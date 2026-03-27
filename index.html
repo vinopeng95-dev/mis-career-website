@@ -3,112 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIS職涯個人網站</title>
+  <title>MIS職涯個人網站｜進階版</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
   <style>
-    body { font-family: Arial, sans-serif; }
-    section { padding: 60px 0; }
-    .hero { background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-align: center; }
-    .card { border-radius: 15px; }
+    body { font-family: "Segoe UI", sans-serif; background:#f5f7fa; }
+    section { padding: 80px 0; display:none; }
+    .active-section { display:block; }
+    .hero { background: linear-gradient(135deg,#667eea,#764ba2); color:white; text-align:center; padding:120px 20px; }
+    .menu-btn { margin:5px; }
+    .card { border-radius:20px; transition:0.3s; }
+    .card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+    footer { margin-top:40px; }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<!-- Hero -->
+<div class="hero">
+  <h1>彭韋諾</h1>
+  <p>未來MIS工程師｜互動式職涯網站</p>
+</div>
+
+<!-- Menu -->
+<div class="container text-center my-4">
+  <button class="btn btn-primary menu-btn" onclick="showSection('about')">自我介紹</button>
+  <button class="btn btn-success menu-btn" onclick="showSection('career')">職涯測驗</button>
+  <button class="btn btn-warning menu-btn" onclick="showSection('job')">MIS工作</button>
+  <button class="btn btn-info menu-btn" onclick="showSection('resume')">履歷</button>
+  <button class="btn btn-dark menu-btn" onclick="showSection('future')">未來規劃</button>
+</div>
+
+<!-- Sections -->
+<section id="about" class="active-section">
   <div class="container">
-    <a class="navbar-brand" href="#">我的職涯網站</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#about">自我介紹</a></li>
-        <li class="nav-item"><a class="nav-link" href="#career">職涯測驗</a></li>
-        <li class="nav-item"><a class="nav-link" href="#job">MIS工作</a></li>
-        <li class="nav-item"><a class="nav-link" href="#resume">履歷</a></li>
-        <li class="nav-item"><a class="nav-link" href="#future">未來規劃</a></li>
+    <div class="card p-4">
+      <h2>自我介紹</h2>
+      <p>我是資訊相關科系大二學生，對資訊系統、網頁開發與技術應用充滿熱情，具備良好的學習能力與問題解決能力。</p>
+    </div>
+  </div>
+</section>
+
+<section id="career">
+  <div class="container">
+    <div class="card p-4">
+      <h2>職涯測驗分析</h2>
+      <p><strong>何倫碼：RIA</strong></p>
+      <ul>
+        <li>R：喜歡實作與技術操作</li>
+        <li>I：擅長分析與邏輯思考</li>
+        <li>A：具創意與設計能力</li>
       </ul>
     </div>
   </div>
-</nav>
-
-<!-- Hero -->
-<section class="hero" style="padding-top:100px">
-  <div class="container">
-    <h1>彭Vino</h1>
-    <p>資訊管理系學生｜未來MIS工程師</p>
-  </div>
 </section>
 
-<!-- About -->
-<section id="about">
-  <div class="container">
-    <h2>自我介紹</h2>
-    <p>目前為大二資訊相關科系學生，對於資訊系統與技術充滿興趣，具備基礎網頁開發能力與學習熱忱。</p>
-  </div>
-</section>
-
-<!-- Career Test -->
-<section id="career" class="bg-light">
-  <div class="container">
-    <h2>職涯測驗分析</h2>
-    <p>何倫碼：RIA（實作型、研究型、藝術型）</p>
-    <ul>
-      <li>喜歡解決問題與實作技術</li>
-      <li>具備邏輯思考能力</li>
-      <li>同時具有創意與設計能力</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Job -->
 <section id="job">
   <div class="container">
-    <h2>MIS工作介紹</h2>
     <div class="card p-4">
-      <h4>公司：科技公司</h4>
-      <h5>職位：MIS工程師</h5>
-      <p><strong>工作內容：</strong></p>
+      <h2>MIS工作介紹</h2>
+      <p><strong>公司：</strong>科技資訊公司</p>
+      <p><strong>職位：</strong>MIS工程師</p>
+      <h5>工作內容</h5>
       <ul>
-        <li>維護公司資訊系統</li>
-        <li>管理網路與設備</li>
-        <li>故障排除</li>
+        <li>企業內部系統維護</li>
+        <li>網路與設備管理</li>
+        <li>故障排除與支援</li>
       </ul>
-      <p><strong>技能需求：</strong></p>
+      <h5>技能需求</h5>
       <ul>
-        <li>HTML / CSS / 基本程式</li>
-        <li>資料庫 MySQL</li>
-        <li>網路知識 TCP/IP</li>
+        <li>程式基礎（HTML/CSS/JS）</li>
+        <li>資料庫（MySQL）</li>
+        <li>網路（TCP/IP）</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- Resume -->
-<section id="resume" class="bg-light">
+<section id="resume">
   <div class="container">
-    <h2>自傳履歷</h2>
-    <p>我目前就讀資訊相關科系，對於資訊系統與網路管理具有高度興趣。在學期間已具備基本程式設計與網頁開發能力，並持續精進相關技能。我個性認真負責，善於解決問題，並樂於學習新知，期望未來能成為專業的MIS工程師。</p>
+    <div class="card p-4">
+      <h2>自傳履歷</h2>
+      <p>我具備資訊相關基礎能力，並持續精進網頁開發與系統管理技能。我個性積極負責，喜歡挑戰問題並找到解決方法。未來希望成為一名專業MIS工程師，為企業提供穩定的資訊環境。</p>
+    </div>
   </div>
 </section>
 
-<!-- Future -->
 <section id="future">
   <div class="container">
-    <h2>未來規劃</h2>
-    <ul>
-      <li>修習資料庫、網路管理、資安相關課程</li>
-      <li>參加研習與線上課程</li>
-      <li>考取相關證照</li>
-    </ul>
+    <div class="card p-4">
+      <h2>未來規劃</h2>
+      <ul>
+        <li>修習資安、網路、資料庫課程</li>
+        <li>參與技術研習與專題實作</li>
+        <li>考取IT相關證照</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <footer class="bg-dark text-white text-center p-3">
-  <p>© 2026 彭Vino</p>
+  <p>© 2026 彭韋諾 | 互動式網站</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function showSection(id) {
+  document.querySelectorAll('section').forEach(sec => {
+    sec.classList.remove('active-section');
+  });
+  document.getElementById(id).classList.add('active-section');
+}
+
+ScrollReveal().reveal('.card', {
+  delay:200,
+  distance:'50px',
+  origin:'bottom',
+  duration:800
+});
+</script>
+
 </body>
 </html>
