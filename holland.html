@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彭韋諾 · 何倫碼分析報告</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --accent-gold: #f59e0b;
+            --soft-white: #f8f9fa;
+            --gray-text: #94a3b8;
+            --card-glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--soft-white);
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .report-wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.2rem;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        .header p {
+            color: var(--gray-text);
+            font-weight: 300;
+            margin-top: 10px;
+        }
+
+        .back-home-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .hero-result {
+            background: var(--card-glass);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 45px 35px;
+            border-radius: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-letter {
+            font-family: 'Oswald', sans-serif;
+            font-size: 8rem;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--accent-gold), #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .main-type {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-top: -5px;
+            color: var(--accent-gold);
+        }
+
+        .hero-desc {
+            margin-top: 25px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--gray-text);
+        }
+
+        .stats-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(8px);
+        }
+
+        .stat-card.active {
+            border-left: 4px solid var(--accent-gold);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .type-info { width: 100px; }
+        .type-info .code { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; }
+        .type-info .label { font-size: 0.75rem; color: var(--gray-text); }
+
+        .progress-box {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: var(--gray-text);
+            transition: width 1.2s ease;
+        }
+
+        .active .bar-fill { background: var(--accent-gold); }
+
+        .score-info {
+            text-align: right;
+            width: 80px;
+        }
+
+        .score-info .val { font-family: 'Oswald', sans-serif; font-size: 1.1rem; display: block; }
+        .score-info .pr { font-size: 0.7rem; color: var(--gray-text); }
+
+        .footer-note {
+            grid-column: span 2;
+            margin-top: 40px;
+            padding: 25px;
+            border-top: 1px dashed rgba(255,255,255,0.1);
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 850px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2.2rem; }
+            .main-letter { font-size: 6rem; }
+            .back-home-btn {
+                position: relative;
+                margin-bottom: 20px;
+                display: inline-flex;
+                width: fit-content;
+            }
+            .header { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="report-wrapper">
+    <header class="header">
+        <a href="index.html" class="back-home-btn">🏠 返回首頁</a>
+        <p>CAREER ASSESSMENT REPORT</p>
+        <h1>My Holland Code</h1>
+    </header>
+
+    <div class="grid-container">
+        <section class="hero-result">
+            <div class="main-letter">R</div>
+            <div class="main-type">實用型 Realistic</div>
+            <p class="hero-desc">
+                我的測驗結果以 <b style="color:#f59e0b;">實用型 (R)</b> 為核心特質，搭配 <b>I (研究型)</b> 與 <b>C (常規型)</b>。<br>
+                這代表我喜歡動手操作、解決具體技術問題，並透過分析與標準化流程，提升設備效率與穩定性 — 與設備工程師職務完美契合。
+            </p>
+        </section>
+
+        <section class="stats-panel">
+            <div class="stat-card active">
+                <div class="type-info"><div class="code">R</div><div class="label">實用型</div></div>
+                <div class="progress-box"><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div></div>
+                <div class="score-info"><span class="val">高</span><span class="pr">核心特質</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="type-info"><div class="code">I</div><div class="label">研究型</div></div>
+                <div class="progress-box"><div class="bar-bg"><div class="bar-fill" style="width: 72%;"></div></div></div>
+                <div class="score-info"><span class="val">中高</span><span class="pr">分析能力</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="type-info"><div class="code">C</div><div class="label">常規型</div></div>
+                <div class="progress-box"><div class="bar-bg"><div class="bar-fill" style="width: 65%;"></div></div></div>
+                <div class="score-info"><span class="val">中等</span><span class="pr">標準化</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="type-info"><div class="code">E</div><div class="label">企業型</div></div>
+                <div class="progress-box"><div class="bar-bg"><div class="bar-fill" style="width: 48%;"></div></div></div>
+                <div class="score-info"><span class="val">中等</span><span class="pr">PR 55</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="type-info"><div class="code">S</div><div class="label">社會型</div></div>
+                <div class="progress-box"><div class="bar-bg"><div class="bar-fill" style="width: 42%;"></div></div></div>
+                <div class="score-info"><span class="val">中等</span><span class="pr">PR 48</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="type-info"><div class="code">A</div><div class="label">藝術型</div></div>
+                <div class="progress-box"><div class="bar-bg"><div class="bar-fill" style="width: 35%;"></div></div></div>
+                <div class="score-info"><span class="val">一般</span><span class="pr">PR 40</span></div>
+            </div>
+        </section>
+
+        <div class="footer-note">
+            📌 <strong>RIC 職涯建議</strong>：適合設備工程師、製程工程師、機械維護工程師等職務 — 結合實作、分析與標準作業流程，在半導體或高科技製造業中發揮所長。<br>
+            ※ 以上評估基於職涯興趣量表，協助探索個人特質與工作適配性。
+        </div>
+    </div>
+</div>
+
+<script>
+    // 技能條動畫
+    const bars = document.querySelectorAll('.bar-fill');
+    const animateBars = () => {
+        bars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => { bar.style.width = width; }, 100);
+        });
+    };
+    window.addEventListener('load', animateBars);
+</script>
+</body>
+</html>
