@@ -3,238 +3,297 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>彭韋諾｜設備工程師職涯</title> 
-
+<title>彭韋諾｜設備工程師</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-    font-family:'Segoe UI','Noto Sans TC',system-ui;
-    background:linear-gradient(135deg,#0f172a,#020617);
-    color:white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* NAV */
-nav{
-    position:fixed;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    padding:15px;
-    backdrop-filter:blur(12px);
-    background:rgba(0,0,0,0.4);
-    z-index:999;
+body {
+    font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    background: #0a0c15;
+    color: #e8edf5;
 }
 
-nav a{
-    color:#cbd5e1;
-    text-decoration:none;
-    transition:.3s;
-    font-weight:500;
+/* 動態背景 */
+.bg-orb {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    background: radial-gradient(circle at 20% 30%, #1a2a3a, #0a0c15);
 }
 
-nav a:hover{
-    color:#f59e0b;
+.bg-orb::before {
+    content: '';
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    background: radial-gradient(circle, rgba(0, 180, 180, 0.15), transparent 70%);
+    top: -20vmax;
+    right: -10vmax;
+    border-radius: 50%;
+    pointer-events: none;
 }
 
-/* HERO */
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    position:relative;
+.bg-orb::after {
+    content: '';
+    position: absolute;
+    width: 50vmax;
+    height: 50vmax;
+    background: radial-gradient(circle, rgba(220, 120, 60, 0.1), transparent 70%);
+    bottom: -15vmax;
+    left: -10vmax;
+    border-radius: 50%;
+    pointer-events: none;
 }
 
-.hero::before{
-    content:'';
-    position:absolute;
-    width:300px;
-    height:300px;
-    background:#f59e0b;
-    filter:blur(120px);
-    opacity:.3;
-    border-radius:50%;
+/* 導航 */
+nav {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(10, 12, 21, 0.75);
+    backdrop-filter: blur(12px);
+    z-index: 999;
+    border-bottom: 1px solid rgba(100, 200, 200, 0.2);
 }
 
-.hero h1{
-    font-size:3.8rem;
-    letter-spacing:2px;
+nav a {
+    color: #b4c2e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.25s;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0;
 }
 
-.hero span{
-    color:#f59e0b;
+nav a:hover {
+    color: #64ffda;
+    transform: translateY(-1px);
 }
 
-.hero p{
-    margin:20px 0 25px;
-    opacity:.8;
-    font-size:1.2rem;
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem;
 }
 
-.btn-group{
-    display:flex;
-    gap:18px;
-    justify-content:center;
-    flex-wrap:wrap;
+.hero-content {
+    max-width: 800px;
 }
 
-.btn{
-    padding:12px 28px;
-    background:#f59e0b;
-    border-radius:40px;
-    text-decoration:none;
-    color:#0f172a;
-    font-weight:bold;
-    transition:.3s;
-    display:inline-block;
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #e2e8f0, #64ffda, #f59e0b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
 }
 
-.btn-outline{
-    background:transparent;
-    border:1.5px solid #f59e0b;
-    color:#f59e0b;
+.hero p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin: 1rem 0 2rem;
 }
 
-.btn-outline:hover{
-    background:#f59e0b;
-    color:#0f172a;
+.btn-group {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.btn:hover{
-    transform:scale(1.05);
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 60px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    background: rgba(100, 255, 218, 0.15);
+    border: 1px solid #64ffda;
+    color: #64ffda;
 }
 
-/* SECTION */
-.section{
-    padding:100px 20px;
-    text-align:center;
+.btn-primary {
+    background: #64ffda;
+    color: #0a0c15;
+    border: none;
 }
 
-.section h2{
-    margin-bottom:50px;
-    font-size:2rem;
-    position:relative;
-    display:inline-block;
+.btn-primary:hover {
+    background: #4cd8b8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.3);
 }
 
-.section h2::after{
-    content:'';
-    position:absolute;
-    bottom:-12px;
-    left:50%;
-    transform:translateX(-50%);
-    width:60px;
-    height:3px;
-    background:#f59e0b;
-    border-radius:3px;
+.btn-outline:hover {
+    background: rgba(100, 255, 218, 0.25);
+    transform: translateY(-2px);
 }
 
-/* 卡片區 */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:35px;
-    max-width:1100px;
-    margin:auto;
+/* Section */
+.section {
+    padding: 5rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.card{
-    background:#1e293b;
-    padding:35px 25px;
-    border-radius:24px;
-    transition:.3s;
-    border:1px solid rgba(255,255,255,0.08);
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 20px 35px rgba(0,0,0,.4);
-    border-color:rgba(245,158,11,0.3);
+.section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    display: inline-block;
+    background: linear-gradient(120deg, #e2e8f0, #64ffda);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-.card h3{
-    margin-bottom:15px;
-    font-size:1.6rem;
-    color:#f59e0b;
+.section-header .sub {
+    color: #64748b;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
 }
 
-.card p{
-    opacity:.8;
-    margin-bottom:25px;
-    line-height:1.6;
+/* 卡片網格 */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
-.link-btn{
-    display:inline-block;
-    padding:10px 28px;
-    border-radius:40px;
-    background:#334155;
-    color:white;
-    text-decoration:none;
-    transition:.3s;
-    font-weight:500;
+.card {
+    background: rgba(20, 25, 40, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 28px;
+    padding: 2rem 1.8rem;
+    transition: all 0.3s ease;
 }
 
-.link-btn:hover{
-    background:#f59e0b;
-    color:#0f172a;
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(100, 255, 218, 0.5);
+    background: rgba(30, 35, 55, 0.8);
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
 }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:40px;
-    background:#020617;
-    color:#94a3b8;
-    border-top:1px solid rgba(255,255,255,0.05);
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
-@media (max-width:768px){
-    .hero h1{font-size:2.5rem;}
-    nav{gap:20px;font-size:0.9rem;}
-    .section{padding:60px 16px;}
-    .card{padding:25px 20px;}
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #64ffda;
+}
+
+.card p {
+    color: #b4c2e0;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: rgba(100, 255, 218, 0.1);
+    border-radius: 40px;
+    color: #64ffda;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+
+.card-link:hover {
+    background: #64ffda;
+    color: #0a0c15;
+    gap: 0.8rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    nav { gap: 1.5rem; font-size: 0.85rem; }
+    .section { padding: 3rem 1rem; }
+    .section-header h2 { font-size: 1.8rem; }
 }
 </style>
 </head>
 <body>
+<div class="bg-orb"></div>
 
 <nav>
     <a href="#home">首頁</a>
-    <a href="#cards-section">探索</a>
+    <a href="#explore">探索</a>
+    <a href="about.html">關於</a>
 </nav>
 
 <section class="hero" id="home">
-    <div>
-        <h1>彭韋諾<span>.</span></h1>
-        <p>設備工程師 | 精密機械 x 故障排除 x 製程優化</p>
+    <div class="hero-content">
+        <h1>彭韋諾</h1>
+        <p>設備工程師 | 精密機械 · 故障排除 · 製程優化</p>
         <div class="btn-group">
-            <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" class="btn">🔧 104 應徵設備工程師</a>
-            <a href="about.html" class="btn btn-outline">📄 關於我</a>
+            <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" class="btn btn-primary">🔧 104 應徵職缺</a>
+            <a href="about.html" class="btn btn-outline">📄 認識我</a>
         </div>
     </div>
 </section>
 
-<section class="section" id="cards-section">
-    <h2>我的職涯探索</h2>
-    <div class="cards">
+<section class="section" id="explore">
+    <div class="section-header">
+        <h2>職涯探索</h2>
+        <div class="sub">Career Exploration</div>
+    </div>
+    <div class="cards-grid">
         <div class="card">
-            <h3>📊 何倫碼分析</h3>
+            <div class="card-icon">📊</div>
+            <h3>何倫碼分析</h3>
             <p>RIC 實作研究型 — 與設備工程師高度契合，喜歡動手解決問題並優化流程。</p>
-            <a href="holland.html" class="link-btn">查看報告 →</a>
+            <a href="holland.html" class="card-link">查看報告 →</a>
         </div>
         <div class="card">
-            <h3>📄 關於我</h3>
+            <div class="card-icon">👤</div>
+            <h3>關於我</h3>
             <p>資管系學生，熱愛硬體設備與自動化控制，目標成為頂尖設備工程師。</p>
-            <a href="about.html" class="link-btn">了解更多 →</a>
+            <a href="about.html" class="card-link">了解更多 →</a>
         </div>
         <div class="card">
-            <h3>📑 專業履歷</h3>
+            <div class="card-icon">📑</div>
+            <h3>專業履歷</h3>
             <p>技能專長、證照規劃與職涯目標 — 持續精進，邁向設備專家。</p>
-            <a href="resume.html" class="link-btn">檢視履歷 →</a>
+            <a href="resume.html" class="card-link">檢視履歷 →</a>
         </div>
     </div>
 </section>
@@ -242,6 +301,5 @@ footer{
 <footer>
     <p>© 2026 彭韋諾｜設備工程師職涯網站</p>
 </footer>
-
 </body>
 </html>
