@@ -1,12 +1,13 @@
+以下是根據您的要求修改後的網頁程式碼。我已將目標職業改為「設備工程師」，並新增了連結至指定104職缺頁面的按鈕，同時調整了相關內容。
+```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>彭韋諾 · 未來MIS工程師 | 精緻履歷</title>
+  <title>彭韋諾 · 設備工程師職涯 | 專業履歷</title>
   <!-- Google Fonts & Tailwind CSS + 自訂微調 -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- 加入優雅字體 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -23,6 +24,8 @@
             'vino-mint': '#00B894',
             'vino-coral': '#FF7675',
             'vino-gold': '#FDCB6E',
+            'equip-blue': '#1E6DFF',
+            'equip-dark': '#0A2540'
           },
           animation: {
             'fade-up': 'fadeUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards',
@@ -43,14 +46,12 @@
     }
   </script>
   <style>
-    /* 自訂平滑捲動、模態窗過渡 */
     html { scroll-behavior: smooth; }
     .modal-transition { transition: opacity 0.25s ease, visibility 0.25s ease; }
     body.modal-open { overflow: hidden; }
     .skill-progress-bar {
       transition: width 0.6s ease-out;
     }
-    /* 導覽列活潑底線效果 */
     .nav-link {
       position: relative;
     }
@@ -73,7 +74,6 @@
       color: #6C5CE7;
       font-weight: 600;
     }
-    /* 卡片通用陰影提升 */
     .hover-card {
       transition: transform 0.25s ease, box-shadow 0.3s ease;
     }
@@ -81,11 +81,20 @@
       transform: translateY(-5px);
       box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
     }
+    .btn-104 {
+      background: linear-gradient(135deg, #1E6DFF 0%, #0052CC 100%);
+      box-shadow: 0 4px 12px rgba(30, 109, 255, 0.3);
+      transition: all 0.2s ease;
+    }
+    .btn-104:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(30, 109, 255, 0.4);
+    }
   </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-800">
 
-  <!-- 導覽列 (sticky + 簡潔但更具現代感) -->
+  <!-- 導覽列 -->
   <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
     <div class="container mx-auto max-w-6xl px-5 md:px-8 py-3 flex flex-wrap items-center justify-between">
       <div class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-vino-dark to-vino-accent bg-clip-text text-transparent">
@@ -94,176 +103,186 @@
       <ul class="flex flex-wrap gap-4 md:gap-7 text-sm md:text-base font-medium">
         <li><a href="#about" class="nav-link text-gray-700 hover:text-vino-accent transition">關於我</a></li>
         <li><a href="#career" class="nav-link text-gray-700 hover:text-vino-accent transition">職涯測驗</a></li>
-        <li><a href="#job" class="nav-link text-gray-700 hover:text-vino-accent transition">MIS工作</a></li>
+        <li><a href="#job" class="nav-link text-gray-700 hover:text-vino-accent transition">設備工程師</a></li>
         <li><a href="#skills" class="nav-link text-gray-700 hover:text-vino-accent transition">技能專長</a></li>
         <li><a href="#future" class="nav-link text-gray-700 hover:text-vino-accent transition">未來規劃</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero 區塊：顯示大頭照.png (從GitHub讀取，請確保圖片放置在正確路徑) -->
-  <section class="py-20 md:py-28 bg-gradient-to-br from-indigo-50 via-white to-purple-50 text-center">
+  <!-- Hero 區塊：設備工程師主題 -->
+  <section class="py-20 md:py-28 bg-gradient-to-br from-blue-50 via-white to-indigo-50 text-center">
     <div class="container mx-auto px-6 max-w-5xl">
-      <!-- 大頭照區塊：使用真實圖片 "大頭照.png" -->
-      <div class="w-36 h-36 md:w-44 md:h-44 mx-auto mb-6 rounded-full bg-gradient-to-tr from-vino-accent to-vino-soft shadow-xl flex items-center justify-center overflow-hidden border-4 border-white">
+      <div class="w-36 h-36 md:w-44 md:h-44 mx-auto mb-6 rounded-full bg-gradient-to-tr from-equip-blue to-vino-accent shadow-xl flex items-center justify-center overflow-hidden border-4 border-white">
         <img src="大頭照.png" alt="彭韋諾 大頭照" class="w-full h-full object-cover">
       </div>
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-800 mb-4">
-        你好，我是 <span class="bg-clip-text text-transparent bg-gradient-to-r from-vino-dark to-vino-accent">彭韋諾</span>
+        你好，我是 <span class="bg-clip-text text-transparent bg-gradient-to-r from-equip-blue to-vino-accent">彭韋諾</span>
       </h2>
       <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
-        未來 MIS 工程師 · 資訊管理 x 系統整合 x 資料庫優化
+        設備工程師 · 精密機械 x 故障排除 x 製程優化
       </p>
       <div class="flex flex-wrap justify-center gap-3 mt-10">
-        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-accent font-semibold text-sm border border-vino-soft/30">🔥 系統維運</span>
-        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-mint font-semibold text-sm border border-vino-mint/30">🗄️ 資料庫管理</span>
-        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-coral font-semibold text-sm border border-vino-coral/30">🌐 網路架構</span>
+        <span class="px-5 py-2 bg-white rounded-full shadow-md text-equip-blue font-semibold text-sm border border-equip-blue/20">🔧 設備維護</span>
+        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-mint font-semibold text-sm border border-vino-mint/30">⚙️ 精密校正</span>
+        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-coral font-semibold text-sm border border-vino-coral/30">📊 製程改善</span>
+      </div>
+      <!-- 104 人力銀行按鈕 - 置於 Hero 醒目位置 -->
+      <div class="mt-10">
+        <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" rel="noopener noreferrer" class="btn-104 inline-flex items-center gap-3 px-8 py-4 bg-equip-blue text-white text-lg font-bold rounded-2xl transition-all shadow-lg hover:shadow-xl">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63c-.75.51-1.37 1.18-1.82 1.96H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8z"/>
+          </svg>
+          104 立即應徵 · 設備工程師職缺
+        </a>
+        <p class="text-sm text-gray-500 mt-3">⭐ 目標職位：半導體／科技大廠設備工程師</p>
       </div>
     </div>
   </section>
 
-  <!-- 主內容區塊：使用類似網頁的獨立區塊，同時保留你原本豐富資訊，並加入模態窗互動 -->
+  <!-- 主內容區塊 -->
   <main class="container mx-auto max-w-6xl px-5 md:px-8 py-12 space-y-24">
     
-    <!-- 關於我 (about) 區塊，保留卡片浮動感 -->
+    <!-- 關於我 -->
     <section id="about" class="scroll-mt-24">
       <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10 hover-card transition-all border border-gray-100">
         <div class="flex flex-col md:flex-row gap-8 items-start">
           <div class="flex-1">
             <div class="inline-block px-4 py-1 rounded-full bg-vino-accent/10 text-vino-accent font-semibold text-sm mb-4">✨ 個人簡介</div>
             <h3 class="text-3xl font-bold mb-4 text-gray-800">關於我</h3>
-            <p class="text-gray-600 leading-relaxed text-lg">我是彭韋諾，一名資訊管理系大二學生，對於資訊系統、網頁技術及資料庫管理充滿熱情。喜歡分析問題並以實作解決技術挑戰，具備高度自學力與團隊協作精神。目標是成為一名專業的MIS工程師，協助企業優化資訊管理效率，確保系統穩定與資料安全。</p>
+            <p class="text-gray-600 leading-relaxed text-lg">我是彭韋諾，一名資訊管理系大二學生，但我對硬體設備、自動化控制與精密機械充滿熱情。善於邏輯分析與動手實作，喜歡拆解問題根源並找出最佳解決方案。目標是成為一名頂尖的設備工程師，在半導體或高科技製造業中，確保生產設備穩定運作，提升整體製程效率。</p>
             <div class="mt-6 grid grid-cols-2 gap-3 text-sm">
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-accent rounded-full"></span> 系統分析與設計</div>
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-mint rounded-full"></span> 資料庫規劃</div>
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-coral rounded-full"></span> 網頁全端基礎</div>
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-gold rounded-full"></span> 技術問題排除</div>
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-equip-blue rounded-full"></span> 設備異常排除</div>
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-mint rounded-full"></span> PLC / 自動化基礎</div>
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-coral rounded-full"></span> 機械手臂操作概念</div>
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-gold rounded-full"></span> 數據分析與報表</div>
             </div>
           </div>
-          <!-- 簡單裝飾區塊 -->
-          <div class="md:w-1/3 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 text-center">
-            <div class="text-5xl mb-2">🎯</div>
-            <p class="font-medium text-gray-700">「將技術轉化為商業價值，讓資訊流更順暢。」</p>
+          <div class="md:w-1/3 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center">
+            <div class="text-5xl mb-2">🔧</div>
+            <p class="font-medium text-gray-700">「精密思維，讓設備發揮極致效能。」</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 職涯測驗 ＋ 何倫碼 RIA (加入對比元素) -->
-    <section id="career" class="scroll-mt-24 bg-gradient-to-r from-vino-accent/5 to-transparent rounded-3xl p-1">
+    <!-- 職涯測驗 ＋ 何倫碼 (RIC 轉換為設備工程師特質) -->
+    <section id="career" class="scroll-mt-24 bg-gradient-to-r from-equip-blue/5 to-transparent rounded-3xl p-1">
       <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
         <div class="text-center mb-8">
-          <span class="px-5 py-1.5 rounded-full bg-vino-accent/10 text-vino-accent font-semibold text-sm">🔮 職涯定位</span>
-          <h3 class="text-3xl font-bold mt-3">何倫碼測驗結果 · RIA 實作分析型</h3>
+          <span class="px-5 py-1.5 rounded-full bg-equip-blue/10 text-equip-blue font-semibold text-sm">🔮 職涯定位</span>
+          <h3 class="text-3xl font-bold mt-3">何倫碼測驗結果 · RIC 實作研究型</h3>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-vino-accent">
-            <h4 class="text-xl font-bold text-vino-accent">R 實作型</h4>
-            <p class="text-gray-600 mt-2">喜歡動手操作、親身解決技術難題，擅長工具應用與系統建置。</p>
+          <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-equip-blue">
+            <h4 class="text-xl font-bold text-equip-blue">R 實作型</h4>
+            <p class="text-gray-600 mt-2">喜歡親手操作、維修設備、動手解決機械或電控問題，擅長工具應用。</p>
           </div>
           <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-vino-mint">
             <h4 class="text-xl font-bold text-vino-mint">I 研究型</h4>
-            <p class="text-gray-600 mt-2">善於分析資訊、邏輯推理，規劃系統流程並解決複雜問題。</p>
+            <p class="text-gray-600 mt-2">善於分析設備數據、尋找異常根源，規劃預防保養計畫與改善對策。</p>
           </div>
           <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-vino-coral">
-            <h4 class="text-xl font-bold text-vino-coral">A 藝術型</h4>
-            <p class="text-gray-600 mt-2">擁有創意與設計思維，能在系統介面或流程中提出創新方案。</p>
+            <h4 class="text-xl font-bold text-vino-coral">C 常規型</h4>
+            <p class="text-gray-600 mt-2">重視標準作業流程，細心執行設備點檢與紀錄，確保生產穩定。</p>
           </div>
         </div>
-        <p class="mt-6 text-gray-700 bg-indigo-50 p-4 rounded-xl">✨ 這項結果與我對MIS工作的嚮往完美契合——結合實作、分析與創意，為企業打造穩定又高效的資訊環境。</p>
+        <p class="mt-6 text-gray-700 bg-blue-50 p-4 rounded-xl">✨ 這項結果與設備工程師高度契合——從實作維修到數據分析，再到標準化作業，完整對應職務需求。</p>
       </div>
     </section>
 
-    <!-- MIS工作介紹 + 需求 (可點選模態窗展現更多) 類似對方的計畫模態互動-->
+    <!-- 設備工程師工作介紹 + 104 第二按鈕 -->
     <section id="job" class="scroll-mt-24">
       <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
         <div class="flex justify-between items-center flex-wrap gap-3 mb-4">
-          <div><span class="px-4 py-1 bg-vino-accent/10 rounded-full text-vino-accent text-sm">💻 職務剖析</span></div>
+          <div><span class="px-4 py-1 bg-equip-blue/10 rounded-full text-equip-blue text-sm">⚙️ 夢想職務</span></div>
         </div>
-        <h3 class="text-3xl font-bold mb-4">MIS工程師 — 資訊核心舵手</h3>
-        <p class="text-gray-600 text-lg leading-relaxed">我嚮往MIS工程師的角色，因為我熱衷於維護企業資訊系統的穩定與安全，並透過技術提升作業效率。這份工作結合網路管理、資料庫維運與使用者支援，與我的技術熱情及RIA特質不謀而合。</p>
+        <h3 class="text-3xl font-bold mb-4">設備工程師 — 產線核心推手</h3>
+        <p class="text-gray-600 text-lg leading-relaxed">我熱愛研究精密機械與自動化設備，設備工程師不僅要維護機台穩定，更要透過數據分析提升設備總和效率(OEE)。這份工作結合機械、電控與管理思維，與我的實作熱情及分析能力完美契合。</p>
         <div class="grid md:grid-cols-2 gap-8 mt-8">
           <div>
-            <h4 class="text-xl font-semibold flex items-center gap-2"><span class="text-vino-accent">📋</span> 核心工作內容</h4>
+            <h4 class="text-xl font-semibold flex items-center gap-2"><span class="text-equip-blue">📋</span> 核心工作內容</h4>
             <ul class="mt-3 space-y-2 text-gray-700">
-              <li>• 企業內部系統維護與效能優化</li>
-              <li>• 網路設備配置 (Switch/Router) 與監控</li>
-              <li>• 資料庫管理 (備份、還原、權限設定)</li>
-              <li>• 故障排除與技術支援，確保營運不中斷</li>
+              <li>• 半導體/面板/LED 製程設備日常維護與保養</li>
+              <li>• 設備異常排除、故障分析與改善報告撰寫</li>
+              <li>• 提升機台妥善率與生產效率 (OEE 監控)</li>
+              <li>• 與製程工程師協作，進行設備參數最佳化</li>
+              <li>• 設備備品管理及成本降低專案</li>
             </ul>
           </div>
           <div>
             <h4 class="text-xl font-semibold flex items-center gap-2"><span class="text-vino-mint">⚙️</span> 必備技能樹</h4>
             <ul class="mt-3 space-y-2 text-gray-700">
-              <li>• 程式基礎：HTML/CSS/JavaScript, Shell Script</li>
-              <li>• 資料庫：MySQL, SQL Server, 效能調校</li>
-              <li>• 網路協定：TCP/IP, VLAN, VPN 概念</li>
-              <li>• 系統管理：Windows Server / Linux 基礎</li>
+              <li>• 機械識圖與氣壓/電路基礎</li>
+              <li>• PLC 與人機介面基礎概念</li>
+              <li>• 設備維修與預防保養規劃</li>
+              <li>• 數據分析工具 (Excel, 基礎Python)</li>
+              <li>• 溝通協調能力 (跨部門合作)</li>
             </ul>
           </div>
         </div>
-        <!-- 模態按鈕：類似對方網頁的計劃按鈕，展示額外MIS職能細節 -->
-        <div class="mt-8 flex justify-end">
-          <button onclick="openModal('jobModal')" class="inline-flex items-center gap-2 bg-vino-accent text-white px-5 py-2.5 rounded-xl hover:bg-vino-dark transition shadow-md">🔍 了解更多MIS職能細節</button>
+        <!-- 第二個 104 按鈕 (置於工作區塊) -->
+        <div class="mt-8 flex flex-wrap justify-between items-center gap-4">
+          <button onclick="openModal('equipModal')" class="inline-flex items-center gap-2 bg-vino-accent text-white px-5 py-2.5 rounded-xl hover:bg-vino-dark transition shadow-md">🔍 了解更多設備工程師細節</button>
+          <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-equip-blue text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-equip-dark transition shadow-md">
+            📢 104 查看完整職缺描述
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 技能專長 + 進度條 (保留但美化) -->
+    <!-- 技能專長 (設備工程師導向) -->
     <section id="skills" class="scroll-mt-24">
       <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
-        <div class="text-center mb-6"><span class="px-4 py-1 bg-vino-accent/10 rounded-full text-vino-accent text-sm">📊 專業技能</span></div>
-        <h3 class="text-3xl font-bold text-center mb-8">核心技術成熟度</h3>
+        <div class="text-center mb-6"><span class="px-4 py-1 bg-equip-blue/10 rounded-full text-equip-blue text-sm">📊 專業技能</span></div>
+        <h3 class="text-3xl font-bold text-center mb-8">設備工程核心能力</h3>
         <div class="max-w-2xl mx-auto space-y-6">
-          <div><div class="flex justify-between mb-1 font-medium"><span>HTML5 / CSS3</span><span>85%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-accent h-3 rounded-full" style="width:85%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>JavaScript (ES6)</span><span>70%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-mint h-3 rounded-full" style="width:70%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>MySQL / 資料庫設計</span><span>75%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-coral h-3 rounded-full" style="width:75%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>網路基礎 / TCP/IP</span><span>68%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-gold h-3 rounded-full" style="width:68%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>Linux / 系統管理</span><span>60%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-indigo-400 h-3 rounded-full" style="width:60%"></div></div></div>
+          <div><div class="flex justify-between mb-1 font-medium"><span>設備故障診斷 / 維修</span><span>75%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-equip-blue h-3 rounded-full" style="width:75%"></div></div></div>
+          <div><div class="flex justify-between mb-1 font-medium"><span>PLC 程式基礎</span><span>60%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-mint h-3 rounded-full" style="width:60%"></div></div></div>
+          <div><div class="flex justify-between mb-1 font-medium"><span>機械識圖 / 氣壓迴路</span><span>70%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-coral h-3 rounded-full" style="width:70%"></div></div></div>
+          <div><div class="flex justify-between mb-1 font-medium"><span>數據分析 (Excel / Python)</span><span>65%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-gold h-3 rounded-full" style="width:65%"></div></div></div>
+          <div><div class="flex justify-between mb-1 font-medium"><span>預防保養規劃 / TPM</span><span>55%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-indigo-400 h-3 rounded-full" style="width:55%"></div></div></div>
         </div>
-        <p class="text-center text-gray-500 text-sm mt-8">持續進修中，目標取得相關認證強化實戰力</p>
+        <p class="text-center text-gray-500 text-sm mt-8">持續精進自動化與機電整合能力，目標取得工業4.0相關認證</p>
       </div>
     </section>
 
-    <!-- 未來規劃 + 三個互動卡片（模態視窗） 類似對方設計但內容更個人化 -->
+    <!-- 未來規劃 + 三個互動卡片 -->
     <section id="future" class="scroll-mt-24">
-      <div class="bg-gradient-to-br from-gray-50 to-indigo-50/30 rounded-3xl p-6 md:p-10 shadow-lg">
+      <div class="bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-3xl p-6 md:p-10 shadow-lg">
         <div class="text-center mb-10">
-          <span class="bg-vino-accent/10 text-vino-accent px-5 py-1.5 rounded-full text-sm font-semibold">🚀 成長藍圖</span>
+          <span class="bg-equip-blue/10 text-equip-blue px-5 py-1.5 rounded-full text-sm font-semibold">🚀 設備工程師養成藍圖</span>
           <h3 class="text-3xl md:text-4xl font-bold mt-4 text-gray-800">未來充實計畫</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto mt-2">短中長期目標，成為頂尖MIS專家</p>
+          <p class="text-gray-600 max-w-2xl mx-auto mt-2">短中長期目標，成為半導體/高科技設備專家</p>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- 短期計畫卡片 -->
           <button onclick="openModal('planShort')" class="group text-left bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl transition-all hover:scale-[1.02] border border-gray-100">
             <div class="text-4xl mb-3">📘</div>
-            <h4 class="text-xl font-extrabold text-vino-accent">一年內計畫</h4>
-            <p class="text-gray-500 mt-2 text-sm">強化資料庫與網路基礎，考取MySQL認證＋參與校內資訊競賽...</p>
-            <span class="inline-block mt-4 text-vino-accent text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
+            <h4 class="text-xl font-extrabold text-equip-blue">一年內計畫</h4>
+            <p class="text-gray-500 mt-2 text-sm">強化機械與電學基礎，考取「工業電子」或「自動化工程師」認證...</p>
+            <span class="inline-block mt-4 text-equip-blue text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
           </button>
-          <!-- 中期計畫 -->
           <button onclick="openModal('planMid')" class="group text-left bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl transition-all hover:scale-[1.02] border border-gray-100">
             <div class="text-4xl mb-3">💼</div>
             <h4 class="text-xl font-extrabold text-vino-mint">三年內計畫</h4>
-            <p class="text-gray-500 mt-2 text-sm">累積實習經驗，熟悉企業級系統維運，考取CCNA或相關網管證照...</p>
+            <p class="text-gray-500 mt-2 text-sm">爭取設備工程師實習，熟悉半導體設備 (黃光/蝕刻/薄膜) 維護...</p>
             <span class="inline-block mt-4 text-vino-mint text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
           </button>
-          <!-- 長期計畫 -->
           <button onclick="openModal('planLong')" class="group text-left bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl transition-all hover:scale-[1.02] border border-gray-100">
             <div class="text-4xl mb-3">🏆</div>
             <h4 class="text-xl font-extrabold text-vino-coral">五年內願景</h4>
-            <p class="text-gray-500 mt-2 text-sm">成為MIS部門核心工程師，擅長專案管理與跨部門溝通...</p>
+            <p class="text-gray-500 mt-2 text-sm">成為設備專案 leader，熟悉全廠自動化整合，邁向設備主管...</p>
             <span class="inline-block mt-4 text-vino-coral text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
           </button>
         </div>
-        <!-- 額外自傳/履歷 融合在規劃區下方 -->
+        <!-- 自傳履歷區 -->
         <div class="mt-12 bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200">
           <h4 class="text-xl font-bold flex items-center gap-2">📄 自傳 / 核心履歷</h4>
-          <p class="text-gray-700 mt-2 leading-relaxed">我是彭韋諾，擁有資訊管理背景，積極參與專題實作，個性主動負責，樂於團隊合作。在校學習資料庫與網路課程之餘，自主開發小型網頁專案，熟悉前後端協作。期待未來能投入MIS領域，從維運到優化，逐步成為企業倚賴的技術專家。</p>
+          <p class="text-gray-700 mt-2 leading-relaxed">我是彭韋諾，具備資訊管理的邏輯思維，同時對設備領域充滿熱忱。在校修習「機電整合概論」、「自動化控制」等課程，並自學PLC基礎。個性細心且擅長團隊合作，樂於挑戰技術難題。期望能進入半導體或高科技製造業，從設備工程師起步，為公司貢獻產能並持續成長。</p>
           <div class="flex flex-wrap gap-3 mt-5 text-sm">
-            <span class="bg-gray-100 px-3 py-1 rounded-full">🎓 資管系 GPA 3.8/4.0</span>
-            <span class="bg-gray-100 px-3 py-1 rounded-full">🏅 資訊應用競賽入圍</span>
-            <span class="bg-gray-100 px-3 py-1 rounded-full">📌 擁有 Google IT 基礎認證 (修讀中)</span>
+            <span class="bg-gray-100 px-3 py-1 rounded-full">🎓 資管系 + 自動化學程</span>
+            <span class="bg-gray-100 px-3 py-1 rounded-full">🔧 丙級工業電子證照 (準備中)</span>
+            <span class="bg-gray-100 px-3 py-1 rounded-full">📈 設備保養實務競賽經驗</span>
           </div>
         </div>
       </div>
@@ -271,23 +290,23 @@
   </main>
 
   <footer class="mt-20 bg-white border-t border-gray-200 py-8 text-center text-gray-500 text-sm">
-    <p>© 2026 彭韋諾 · 精緻MIS職涯網站 | 響應式設計 · 擁抱未來技術</p>
-    <p class="mt-1 text-xs opacity-70">以資訊管理為核心，打造專業形象</p>
+    <p>© 2026 彭韋諾 · 設備工程師職涯網站 | 致力於精密設備領域</p>
+    <p class="mt-1 text-xs opacity-70">以實作與分析能力，成為產線最信賴的設備專家</p>
   </footer>
 
-  <!-- ==================== 模態窗區域 (類似學生範例，但內容完全對應 MIS 職涯) ==================== -->
-  <!-- MIS 工作細節模態 -->
-  <div id="jobModal" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('jobModal')"></div>
+  <!-- ==================== 模態窗區塊 ==================== -->
+  <!-- 設備工程師細節模態 -->
+  <div id="equipModal" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('equipModal')"></div>
     <div class="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl p-8 transform transition-all scale-95">
-      <h3 class="text-2xl font-bold text-vino-accent border-b pb-2 mb-4">MIS 工程師進階職能</h3>
+      <h3 class="text-2xl font-bold text-equip-blue border-b pb-2 mb-4">設備工程師 進階技能</h3>
       <ul class="space-y-3 text-gray-700">
-        <li>🔹 <strong>資料庫高可用性</strong>：熟悉複製、叢集與備份策略。</li>
-        <li>🔹 <strong>資訊安全監控</strong>：弱點掃描、日誌分析與權限控管。</li>
-        <li>🔹 <strong>自動化腳本撰寫</strong>：Python / Bash 提升日常維運效率。</li>
-        <li>🔹 <strong>雲端基礎</strong>：了解 AWS/Azure 基本服務，混合雲概念。</li>
+        <li>🔹 <strong>精密機械知識</strong>：了解軸承、馬達、傳動機構原理。</li>
+        <li>🔹 <strong>故障樹分析 (FTA)</strong>：系統化找出異常根本原因。</li>
+        <li>🔹 <strong>SECS/GEM 通訊協定</strong>：半導體設備連線基礎。</li>
+        <li>🔹 <strong>設備總和效率 (OEE) 改善</strong>：提升產能關鍵指標。</li>
       </ul>
-      <button onclick="closeModal('jobModal')" class="mt-6 w-full py-3 bg-gray-100 rounded-xl font-semibold hover:bg-gray-200 transition">關閉</button>
+      <button onclick="closeModal('equipModal')" class="mt-6 w-full py-3 bg-gray-100 rounded-xl font-semibold hover:bg-gray-200 transition">關閉</button>
     </div>
   </div>
 
@@ -295,12 +314,12 @@
   <div id="planShort" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('planShort')"></div>
     <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl p-8">
-      <div class="text-vino-accent text-3xl mb-2">📚 一年內具體行動</div>
+      <div class="text-equip-blue text-3xl mb-2">📚 一年內具體行動</div>
       <ul class="list-disc pl-5 space-y-2 text-gray-700 mt-3">
-        <li>完成資料庫管理實務課程，考取 MySQL 8.0 資料庫認證。</li>
-        <li>參與「全國大專資訊應用服務創新競賽」累積專案經驗。</li>
-        <li>自主學習網路概論並模擬中小型企業網路架設。</li>
-        <li>加強英文閱讀技術文件能力，多益目標750分。</li>
+        <li>考取「工業電子丙級」或「自動化工程師 Level 1」證照。</li>
+        <li>完成線上 PLC 基礎課程 (西門子/三菱) 並實作小專案。</li>
+        <li>參與科技廠設備導覽/產學合作活動，累積業界認知。</li>
+        <li>強化機械製圖與氣壓迴路識圖能力。</li>
       </ul>
       <button onclick="closeModal('planShort')" class="mt-6 w-full py-2.5 bg-gray-100 rounded-xl font-medium">關閉</button>
     </div>
@@ -312,10 +331,10 @@
     <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl p-8">
       <div class="text-vino-mint text-3xl mb-2">💡 三年職涯躍進</div>
       <ul class="list-disc pl-5 space-y-2 text-gray-700 mt-3">
-        <li>積極尋找 MIS 實習 / 資訊助理職位，累積實戰經驗。</li>
-        <li>取得 CCNA 或 NSE 4 網路資安基礎認證。</li>
-        <li>熟悉企業級 ERP 或 SAP 基本模組維運。</li>
-        <li>建立個人技術部落格，分享學習歷程，拓展業界人脈。</li>
+        <li>應徵半導體/面板廠設備工程師實習或正職。</li>
+        <li>熟悉至少一種設備類型 (曝光機/蝕刻/檢測機台) 維護。</li>
+        <li>取得「機電整合」或「工業4.0」相關中階認證。</li>
+        <li>建立設備維修知識庫，累積解決案例。</li>
       </ul>
       <button onclick="closeModal('planMid')" class="mt-6 w-full py-2.5 bg-gray-100 rounded-xl font-medium">關閉</button>
     </div>
@@ -327,17 +346,16 @@
     <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl p-8">
       <div class="text-vino-coral text-3xl mb-2">🌟 五年願景藍圖</div>
       <ul class="list-disc pl-5 space-y-2 text-gray-700 mt-3">
-        <li>成為 MIS 部門核心工程師，主導系統升級與專案導入。</li>
-        <li>具備跨部門溝通能力，協助制訂企業 IT 策略。</li>
-        <li>取得資訊安全相關證照 (CEH / ISO 27001) 提升資安視野。</li>
-        <li>培養團隊領導力，往資訊主管或技術顧問角色邁進。</li>
+        <li>成為設備專案改善負責人，領導跨部門維修團隊。</li>
+        <li>深入學習大數據分析預測性保養 (PdM)。</li>
+        <li>取得「設備工程師」或「CVD/PVD」原廠認證。</li>
+        <li>朝設備主管或製程整合工程師發展。</li>
       </ul>
       <button onclick="closeModal('planLong')" class="mt-6 w-full py-2.5 bg-gray-100 rounded-xl font-medium">關閉</button>
     </div>
   </div>
 
   <script>
-    // 模態窗管理函式
     function openModal(id) {
       const modal = document.getElementById(id);
       if (!modal) return;
@@ -354,13 +372,11 @@
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
     }
-    // 點擊背景關閉
     window.addEventListener('click', function(e) {
       if (e.target.classList && e.target.classList.contains('modal')) {
         closeModal(e.target.id);
       }
     });
-    // 導航 active 高亮 (scrollspy 簡易版)
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     function setActiveNav() {
@@ -383,8 +399,6 @@
     }
     window.addEventListener('scroll', setActiveNav);
     window.addEventListener('load', setActiveNav);
-
-    // 技能條可增加動畫效果 (可選)
     const skillBars = document.querySelectorAll('.skill-progress-bar');
     const animateSkills = () => {
       skillBars.forEach(bar => {
@@ -397,3 +411,4 @@
   </script>
 </body>
 </html>
+```
