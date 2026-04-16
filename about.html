@@ -47,7 +47,7 @@
             padding: 2rem;
         }
 
-        /* 第一行：左文右圖 */
+        /* 第一行：左文右圖（大頭照） */
         .row {
             display: flex;
             gap: 3rem;
@@ -62,6 +62,8 @@
         }
         .row-visual {
             flex: 0.8;
+            display: flex;
+            justify-content: center;
         }
 
         .section-label {
@@ -81,6 +83,36 @@
         .row p {
             color: #b4bedb;
             line-height: 1.7;
+        }
+
+        /* 大頭照樣式 */
+        .avatar-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            padding: 4px;
+            box-shadow: 0 20px 35px -12px rgba(139, 92, 246, 0.4);
+        }
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #2a2f4a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #a78bfa;
         }
 
         /* 圓形進度環裝飾 */
@@ -169,6 +201,10 @@
             .row-visual {
                 order: -1;
             }
+            .avatar-frame {
+                width: 160px;
+                height: 160px;
+            }
         }
     </style>
 </head>
@@ -179,7 +215,7 @@
 </div>
 
 <div class="container">
-    <!-- 第一行：自我介紹 + 圓環 -->
+    <!-- 第一行：自我介紹 + 大頭照 -->
     <div class="row">
         <div class="row-content">
             <div class="section-label">ABOUT ME</div>
@@ -187,12 +223,10 @@
             <p>我是彭韋諾，資訊管理系在學生，但對硬體設備與自動化控制有著極大的熱情。我喜歡動手拆解問題、分析故障根源，並找出最佳解決方案。</p>
         </div>
         <div class="row-visual">
-            <div class="ring-viz">
-                <svg viewBox="0 0 200 200">
-                    <circle class="ring-bg" cx="100" cy="100" r="80"></circle>
-                    <circle class="ring-fill" cx="100" cy="100" r="80" style="stroke-dashoffset: 80;"></circle>
-                </svg>
-                <div class="ring-text">RIC</div>
+            <div class="avatar-frame">
+                <img src="大頭照.png" alt="彭韋諾大頭照" 
+                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.avatar-placeholder').style.display='flex';">
+                <div class="avatar-placeholder" style="display: none;">彭</div>
             </div>
         </div>
     </div>
@@ -205,16 +239,34 @@
             <p>我的何倫碼為 <strong style="color:#a78bfa;">RIC (實用型＋研究型＋常規型)</strong>，這代表我具備「務實動手、邏輯分析、標準化作業」的特質 — 與設備工程師職務高度契合。「讓每一台設備發揮極致效能」— 期望在半導體或高科技製造業中，從設備工程師起步，持續精進。</p>
         </div>
         <div class="row-visual">
-            <div class="skills-grid">
-                <div class="skill-card">🔧 故障診斷</div>
-                <div class="skill-card">⚙️ 預防保養</div>
-                <div class="skill-card">📊 數據分析</div>
-                <div class="skill-card">🔌 PLC基礎</div>
+            <div class="ring-viz">
+                <svg viewBox="0 0 200 200">
+                    <circle class="ring-bg" cx="100" cy="100" r="80"></circle>
+                    <circle class="ring-fill" cx="100" cy="100" r="80" style="stroke-dashoffset: 80;"></circle>
+                </svg>
+                <div class="ring-text">RIC</div>
             </div>
         </div>
     </div>
 
-    <!-- 第三行：聯絡資訊 -->
+    <!-- 第三行：技能亮點 -->
+    <div class="row">
+        <div class="row-content">
+            <div class="section-label">SKILLS</div>
+            <h2>專業亮點</h2>
+            <div class="skills-grid">
+                <div class="skill-card">🔧 故障診斷與分析</div>
+                <div class="skill-card">⚙️ 預防保養規劃</div>
+                <div class="skill-card">📊 數據分析 (Excel/Python)</div>
+                <div class="skill-card">🔌 PLC 基礎邏輯</div>
+            </div>
+        </div>
+        <div class="row-visual">
+            <!-- 留白，維持 Z 字形節奏 -->
+        </div>
+    </div>
+
+    <!-- 第四行：聯絡資訊 -->
     <div>
         <div class="section-label">CONTACT</div>
         <div class="contact-area">
@@ -230,6 +282,26 @@
 </div>
 
 <script>
+    // 處理大頭照載入失敗時的備用方案
+    const avatarImg = document.querySelector('.avatar-frame img');
+    const avatarPlaceholder = document.querySelector('.avatar-placeholder');
+    if (avatarImg) {
+        avatarImg.addEventListener('error', function() {
+            this.style.display = 'none';
+            if (avatarPlaceholder) {
+                avatarPlaceholder.style.display = 'flex';
+            }
+        });
+        // 檢查圖片是否已載入完成但失敗
+        if (avatarImg.complete && avatarImg.naturalWidth === 0) {
+            avatarImg.style.display = 'none';
+            if (avatarPlaceholder) {
+                avatarPlaceholder.style.display = 'flex';
+            }
+        }
+    }
+
+    // 複製 Email 功能
     document.getElementById('copyBtn')?.addEventListener('click', () => {
         navigator.clipboard.writeText('vinopeng95@gmail.com');
         const btn = document.getElementById('copyBtn');
