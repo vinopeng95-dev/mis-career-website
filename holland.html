@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>彭韋諾 · 何倫碼分析</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,98 +13,75 @@
         }
 
         body {
-            background: #0f131f;
+            background: #0c0f18;
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            color: #e2e8f0;
-            padding: 2rem;
+            color: #eef2ff;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* 返回按鈕 */
-        .back-area {
+        /* 頂部返回列 */
+        .top-bar {
+            padding: 1rem 2rem;
+            background: rgba(12, 15, 24, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(80, 200, 150, 0.2);
             display: flex;
-            justify-content: flex-start;
-            margin-bottom: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
         .back-btn {
-            background: rgba(100, 180, 200, 0.1);
-            border: 1px solid #64b4c8;
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
-            color: #64b4c8;
+            background: rgba(80, 200, 150, 0.1);
+            border: 1px solid #50c896;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            color: #50c896;
             text-decoration: none;
-            font-weight: 500;
+            font-size: 0.85rem;
             transition: 0.25s;
         }
         .back-btn:hover {
-            background: #64b4c8;
-            color: #0f131f;
+            background: #50c896;
+            color: #0c0f18;
         }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .header .label {
-            background: rgba(100, 180, 200, 0.2);
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            color: #64b4c8;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-        .header h1 {
-            font-size: 2.6rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #e2e8f0, #64b4c8);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        /* 主內容 - 瀑布不對稱 */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 2rem;
-        }
-
-        /* 左側大卡 */
-        .hero-card {
-            background: linear-gradient(145deg, #151c2c, #0f1422);
-            border-radius: 2rem;
+        /* 主容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 2rem;
-            border: 1px solid rgba(100, 180, 200, 0.25);
+        }
+
+        /* 上方結果卡 - 大面積 */
+        .hero-card {
+            background: linear-gradient(145deg, #141b2a, #0f1322);
+            border-radius: 2rem;
+            padding: 2.5rem;
             text-align: center;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(80, 200, 150, 0.2);
         }
         .big-code {
-            font-size: 5.5rem;
+            font-size: 5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #64b4c8, #e68a50);
+            background: linear-gradient(135deg, #50c896, #e69650);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             line-height: 1;
         }
-        .code-desc {
-            font-size: 1.2rem;
+        .hero-title {
+            font-size: 1.3rem;
             font-weight: 500;
             margin: 0.5rem 0 1rem;
-            color: #64b4c8;
+            color: #50c896;
         }
         .hero-text {
-            color: #a0acc8;
+            color: #a5b0c8;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
-            font-size: 0.9rem;
         }
-        .pill-box {
+        .pill-group {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -112,142 +89,148 @@
             margin-top: 1.5rem;
         }
         .pill {
-            background: rgba(100, 180, 200, 0.15);
-            padding: 0.2rem 0.8rem;
+            background: rgba(80, 200, 150, 0.15);
+            padding: 0.3rem 1rem;
             border-radius: 30px;
-            font-size: 0.7rem;
-            color: #64b4c8;
+            font-size: 0.75rem;
         }
 
-        /* 右側量表 */
+        /* 下方橫向捲動量表 */
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            color: #e69650;
+            letter-spacing: 1px;
+        }
+        .stats-scroll {
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
         .stats {
             display: flex;
-            flex-direction: column;
             gap: 1rem;
+            min-width: 600px;
         }
-        .stat-row {
-            background: rgba(20, 28, 45, 0.7);
+        .stat-card {
+            flex: 1;
+            min-width: 140px;
+            background: rgba(20, 28, 48, 0.7);
             border-radius: 1.2rem;
-            padding: 1rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            border: 1px solid rgba(100, 180, 200, 0.15);
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(80, 200, 150, 0.15);
             transition: 0.2s;
         }
-        .stat-row.highlight {
-            border-left: 4px solid #e68a50;
-            background: rgba(100, 180, 200, 0.05);
-        }
-        .stat-label {
-            width: 85px;
+        .stat-card.highlight {
+            border-left: 3px solid #e69650;
+            background: rgba(80, 200, 150, 0.05);
         }
         .stat-code {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #e68a50;
+            color: #e69650;
         }
         .stat-name {
             font-size: 0.7rem;
-            color: #7a88a8;
+            color: #8a95b5;
+            margin-bottom: 1rem;
         }
-        .bar-area {
-            flex: 1;
-            min-width: 140px;
-        }
-        .bar-bg {
+        .stat-bar {
+            width: 100%;
+            height: 6px;
             background: #262e48;
-            height: 7px;
             border-radius: 10px;
+            margin: 0.8rem 0;
+            overflow: hidden;
         }
-        .bar-fill {
+        .stat-fill {
             height: 100%;
             border-radius: 10px;
-            background: linear-gradient(90deg, #64b4c8, #e68a50);
+            background: linear-gradient(90deg, #50c896, #e69650);
             width: 0%;
             transition: width 1s ease;
         }
         .stat-score {
-            width: 65px;
-            text-align: right;
             font-weight: 600;
-            color: #e68a50;
+            font-size: 1rem;
+            color: #50c896;
         }
 
         .footer-note {
             margin-top: 2rem;
             padding: 1rem;
-            background: rgba(20, 28, 45, 0.5);
-            border-radius: 1.2rem;
+            background: rgba(20, 28, 48, 0.5);
+            border-radius: 1rem;
             text-align: center;
             font-size: 0.75rem;
-            color: #7a88a8;
-            border: 1px dashed rgba(100, 180, 200, 0.3);
+            color: #7a85a8;
         }
 
-        @media (max-width: 850px) {
-            .main-grid { grid-template-columns: 1fr; }
-            .big-code { font-size: 4rem; }
-            .header h1 { font-size: 2rem; }
+        @media (max-width: 700px) {
+            .big-code { font-size: 3.5rem; }
+            .hero-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
+
+<div class="top-bar">
+    <div></div>
+    <a href="index.html" class="back-btn">← 返回主頁</a>
+</div>
+
 <div class="container">
-    <div class="back-area">
-        <a href="index.html" class="back-btn">← 返回主頁</a>
-    </div>
-
-    <div class="header">
-        <div class="label">HOLLAND CODE</div>
-        <h1>職涯人格分析</h1>
-    </div>
-
-    <div class="main-grid">
-        <div class="hero-card">
-            <div class="big-code">RIC</div>
-            <div class="code-desc">實用型 · 研究型 · 常規型</div>
-            <div class="hero-text">
-                我的核心特質為 <strong>實用型 (R)</strong>，搭配研究型 (I) 與常規型 (C)。<br>
-                喜歡動手操作、分析問題根源，並透過標準化流程提升效率 — 與設備工程師職務完美契合。
-            </div>
-            <div class="pill-box">
-                <span class="pill">🔧 動手實作</span>
-                <span class="pill">📊 數據分析</span>
-                <span class="pill">📋 標準流程</span>
-            </div>
+    <div class="hero-card">
+        <div class="big-code">RIC</div>
+        <div class="hero-title">實用型 · 研究型 · 常規型</div>
+        <div class="hero-text">
+            我的核心特質為 <strong>實用型 (R)</strong>，搭配研究型 (I) 與常規型 (C)。<br>
+            喜歡動手操作、分析問題根源，並透過標準化流程提升效率 — 與設備工程師職務完美契合。
         </div>
+        <div class="pill-group">
+            <span class="pill">🔧 動手實作</span>
+            <span class="pill">📊 數據分析</span>
+            <span class="pill">📋 標準流程</span>
+        </div>
+    </div>
 
+    <div class="section-title">📈 六型人格傾向</div>
+    <div class="stats-scroll">
         <div class="stats">
-            <div class="stat-row highlight">
-                <div class="stat-label"><div class="stat-code">R</div><div class="stat-name">實用型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div></div>
+            <div class="stat-card highlight">
+                <div class="stat-code">R</div>
+                <div class="stat-name">實用型</div>
+                <div class="stat-bar"><div class="stat-fill" style="width: 88%;"></div></div>
                 <div class="stat-score">88%</div>
             </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">I</div><div class="stat-name">研究型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 72%;"></div></div></div>
+            <div class="stat-card">
+                <div class="stat-code">I</div>
+                <div class="stat-name">研究型</div>
+                <div class="stat-bar"><div class="stat-fill" style="width: 72%;"></div></div>
                 <div class="stat-score">72%</div>
             </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">C</div><div class="stat-name">常規型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 65%;"></div></div></div>
+            <div class="stat-card">
+                <div class="stat-code">C</div>
+                <div class="stat-name">常規型</div>
+                <div class="stat-bar"><div class="stat-fill" style="width: 65%;"></div></div>
                 <div class="stat-score">65%</div>
             </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">E</div><div class="stat-name">企業型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 48%;"></div></div></div>
+            <div class="stat-card">
+                <div class="stat-code">E</div>
+                <div class="stat-name">企業型</div>
+                <div class="stat-bar"><div class="stat-fill" style="width: 48%;"></div></div>
                 <div class="stat-score">48%</div>
             </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">S</div><div class="stat-name">社會型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 42%;"></div></div></div>
+            <div class="stat-card">
+                <div class="stat-code">S</div>
+                <div class="stat-name">社會型</div>
+                <div class="stat-bar"><div class="stat-fill" style="width: 42%;"></div></div>
                 <div class="stat-score">42%</div>
             </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">A</div><div class="stat-name">藝術型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 35%;"></div></div></div>
+            <div class="stat-card">
+                <div class="stat-code">A</div>
+                <div class="stat-name">藝術型</div>
+                <div class="stat-bar"><div class="stat-fill" style="width: 35%;"></div></div>
                 <div class="stat-score">35%</div>
             </div>
         </div>
@@ -259,7 +242,7 @@
 </div>
 
 <script>
-    const fills = document.querySelectorAll('.bar-fill');
+    const fills = document.querySelectorAll('.stat-fill');
     window.addEventListener('load', () => {
         fills.forEach(f => {
             const w = f.style.width;
