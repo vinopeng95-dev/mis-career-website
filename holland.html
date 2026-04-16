@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>彭韋諾 · 何倫碼分析</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,44 +13,36 @@
         }
 
         body {
-            background: #0f1117;
-            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
-            color: #eef2ff;
-            padding: 3rem 1.5rem;
-            display: flex;
-            justify-content: center;
+            background: #0d0f1a;
+            font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+            color: #f0f0f0;
+            padding: 2rem;
         }
 
         .container {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
         }
 
         /* 返回區塊 */
-        .nav-bar {
+        .top-nav {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 2rem;
         }
-
-        .back-home {
-            background: rgba(100, 255, 218, 0.1);
-            border: 1px solid rgba(100, 255, 218, 0.4);
-            padding: 0.6rem 1.5rem;
-            border-radius: 60px;
-            color: #64ffda;
+        .back-link {
+            background: rgba(80, 180, 180, 0.15);
+            border: 1px solid #50b4b4;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            color: #50b4b4;
             text-decoration: none;
             font-weight: 500;
             transition: 0.25s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-
-        .back-home:hover {
-            background: #64ffda;
-            color: #0f1117;
-            transform: translateY(-2px);
+        .back-link:hover {
+            background: #50b4b4;
+            color: #0d0f1a;
         }
 
         /* Header */
@@ -58,238 +50,222 @@
             text-align: center;
             margin-bottom: 3rem;
         }
-
-        .header .badge {
+        .header .chip {
+            background: rgba(80, 180, 180, 0.2);
             display: inline-block;
-            background: rgba(100, 255, 218, 0.15);
-            padding: 0.25rem 1rem;
-            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
             font-size: 0.7rem;
+            color: #50b4b4;
             letter-spacing: 1px;
-            color: #64ffda;
             margin-bottom: 1rem;
         }
-
         .header h1 {
             font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #e2e8f0, #64ffda);
+            background: linear-gradient(135deg, #e0e0e0, #50b4b4);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
 
-        /* 雙欄布局 */
-        .two-columns {
+        /* 主內容雙欄 */
+        .two-col {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 2rem;
         }
 
-        /* 左側主結果 */
-        .result-card {
-            background: rgba(25, 30, 45, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            border-radius: 32px;
+        /* 左側主要結果 */
+        .result-area {
+            background: linear-gradient(145deg, #151a2a, #0f121f);
+            border-radius: 2rem;
             padding: 2rem;
+            border: 1px solid rgba(80, 180, 180, 0.3);
             text-align: center;
         }
-
-        .big-letter {
-            font-size: 7rem;
+        .big-code {
+            font-size: 6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #64ffda, #f59e0b);
+            background: linear-gradient(135deg, #50b4b4, #ff8c5a);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             line-height: 1;
         }
-
-        .result-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .result-sub {
+            font-size: 1.3rem;
+            font-weight: 500;
             margin: 0.5rem 0 1rem;
-            color: #64ffda;
+            color: #50b4b4;
         }
-
-        .result-desc {
-            color: #a0afc5;
-            line-height: 1.7;
+        .result-text {
+            color: #aab0c0;
+            line-height: 1.6;
             font-size: 0.9rem;
         }
-
-        .tag-group {
+        .pill-group {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             justify-content: center;
             margin-top: 1.5rem;
         }
-
-        .tag {
-            background: rgba(100, 255, 218, 0.1);
-            padding: 0.25rem 0.8rem;
-            border-radius: 40px;
+        .pill {
+            background: rgba(80, 180, 180, 0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
             font-size: 0.7rem;
-            color: #64ffda;
+            color: #50b4b4;
         }
 
         /* 右側量表 */
-        .stats-panel {
+        .stats {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-
-        .stat-item {
+        .stat-row {
             background: rgba(20, 25, 40, 0.7);
-            border-radius: 20px;
-            padding: 1rem 1.5rem;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            transition: 0.2s;
+            border: 1px solid rgba(80, 180, 180, 0.15);
         }
-
-        .stat-item.active {
-            border-left: 4px solid #64ffda;
-            background: rgba(100, 255, 218, 0.05);
+        .stat-row.active {
+            border-left: 4px solid #50b4b4;
+            background: rgba(80, 180, 180, 0.08);
         }
-
-        .type-label {
-            width: 90px;
+        .stat-label {
+            width: 85px;
         }
-        .type-code {
-            font-size: 1.5rem;
+        .stat-code {
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #64ffda;
+            color: #50b4b4;
         }
-        .type-name {
+        .stat-name {
             font-size: 0.7rem;
-            color: #7c8aa0;
+            color: #8890a0;
         }
-
-        .progress-area {
+        .bar-area {
             flex: 1;
             min-width: 150px;
         }
-        .progress-bg {
+        .bar-bg {
             background: #2a2f45;
             height: 8px;
             border-radius: 10px;
-            overflow: hidden;
         }
-        .progress-fill {
+        .bar-fill {
             height: 100%;
             border-radius: 10px;
-            background: linear-gradient(90deg, #64ffda, #f59e0b);
+            background: linear-gradient(90deg, #50b4b4, #ff8c5a);
             width: 0%;
             transition: width 1s ease;
         }
-        .score {
+        .stat-score {
             width: 70px;
             text-align: right;
             font-weight: 600;
-            color: #64ffda;
+            color: #ff8c5a;
         }
 
         .footer-note {
-            margin-top: 2.5rem;
-            padding: 1.5rem;
+            margin-top: 2rem;
+            padding: 1.2rem;
             background: rgba(20, 25, 40, 0.5);
-            border-radius: 24px;
-            font-size: 0.8rem;
-            color: #7c8aa0;
+            border-radius: 1.5rem;
             text-align: center;
-            border: 1px dashed rgba(100, 255, 218, 0.2);
+            font-size: 0.8rem;
+            color: #8890a0;
+            border: 1px dashed rgba(80, 180, 180, 0.3);
         }
 
         @media (max-width: 850px) {
-            .two-columns { grid-template-columns: 1fr; }
-            .big-letter { font-size: 5rem; }
+            .two-col { grid-template-columns: 1fr; }
+            .big-code { font-size: 4rem; }
             .header h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="nav-bar">
-        <a href="index.html" class="back-home">← 返回主頁</a>
+    <div class="top-nav">
+        <a href="index.html" class="back-link">← 返回主頁</a>
     </div>
 
     <div class="header">
-        <div class="badge">HOLLAND CODE ASSESSMENT</div>
+        <div class="chip">HOLLAND CODE</div>
         <h1>職涯人格分析</h1>
     </div>
 
-    <div class="two-columns">
-        <div class="result-card">
-            <div class="big-letter">RIC</div>
-            <div class="result-title">實用型 · 研究型 · 常規型</div>
-            <p class="result-desc">
+    <div class="two-col">
+        <div class="result-area">
+            <div class="big-code">RIC</div>
+            <div class="result-sub">實用型 · 研究型 · 常規型</div>
+            <div class="result-text">
                 我的核心特質為 <strong>實用型 (R)</strong>，搭配研究型 (I) 與常規型 (C)。<br>
-                這代表我喜歡動手操作、分析問題根源，並透過標準化流程提升效率 — 與設備工程師職務完美契合。
-            </p>
-            <div class="tag-group">
-                <span class="tag">🔧 動手實作</span>
-                <span class="tag">📊 數據分析</span>
-                <span class="tag">📋 標準流程</span>
+                喜歡動手操作、分析問題根源，並透過標準化流程提升效率 — 與設備工程師職務完美契合。
+            </div>
+            <div class="pill-group">
+                <span class="pill">🔧 動手實作</span>
+                <span class="pill">📊 數據分析</span>
+                <span class="pill">📋 標準流程</span>
             </div>
         </div>
 
-        <div class="stats-panel">
-            <div class="stat-item active">
-                <div class="type-label"><div class="type-code">R</div><div class="type-name">實用型</div></div>
-                <div class="progress-area"><div class="progress-bg"><div class="progress-fill" style="width: 88%;"></div></div></div>
-                <div class="score">88%</div>
+        <div class="stats">
+            <div class="stat-row active">
+                <div class="stat-label"><div class="stat-code">R</div><div class="stat-name">實用型</div></div>
+                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div></div>
+                <div class="stat-score">88%</div>
             </div>
-            <div class="stat-item">
-                <div class="type-label"><div class="type-code">I</div><div class="type-name">研究型</div></div>
-                <div class="progress-area"><div class="progress-bg"><div class="progress-fill" style="width: 72%;"></div></div></div>
-                <div class="score">72%</div>
+            <div class="stat-row">
+                <div class="stat-label"><div class="stat-code">I</div><div class="stat-name">研究型</div></div>
+                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 72%;"></div></div></div>
+                <div class="stat-score">72%</div>
             </div>
-            <div class="stat-item">
-                <div class="type-label"><div class="type-code">C</div><div class="type-name">常規型</div></div>
-                <div class="progress-area"><div class="progress-bg"><div class="progress-fill" style="width: 65%;"></div></div></div>
-                <div class="score">65%</div>
+            <div class="stat-row">
+                <div class="stat-label"><div class="stat-code">C</div><div class="stat-name">常規型</div></div>
+                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 65%;"></div></div></div>
+                <div class="stat-score">65%</div>
             </div>
-            <div class="stat-item">
-                <div class="type-label"><div class="type-code">E</div><div class="type-name">企業型</div></div>
-                <div class="progress-area"><div class="progress-bg"><div class="progress-fill" style="width: 48%;"></div></div></div>
-                <div class="score">48%</div>
+            <div class="stat-row">
+                <div class="stat-label"><div class="stat-code">E</div><div class="stat-name">企業型</div></div>
+                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 48%;"></div></div></div>
+                <div class="stat-score">48%</div>
             </div>
-            <div class="stat-item">
-                <div class="type-label"><div class="type-code">S</div><div class="type-name">社會型</div></div>
-                <div class="progress-area"><div class="progress-bg"><div class="progress-fill" style="width: 42%;"></div></div></div>
-                <div class="score">42%</div>
+            <div class="stat-row">
+                <div class="stat-label"><div class="stat-code">S</div><div class="stat-name">社會型</div></div>
+                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 42%;"></div></div></div>
+                <div class="stat-score">42%</div>
             </div>
-            <div class="stat-item">
-                <div class="type-label"><div class="type-code">A</div><div class="type-name">藝術型</div></div>
-                <div class="progress-area"><div class="progress-bg"><div class="progress-fill" style="width: 35%;"></div></div></div>
-                <div class="score">35%</div>
+            <div class="stat-row">
+                <div class="stat-label"><div class="stat-code">A</div><div class="stat-name">藝術型</div></div>
+                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 35%;"></div></div></div>
+                <div class="stat-score">35%</div>
             </div>
         </div>
     </div>
 
     <div class="footer-note">
-        📌 <strong>RIC 職涯建議</strong>：適合設備工程師、製程工程師、機械維護工程師等職務 — 在半導體或高科技製造業中發揮所長。
+        📌 <strong>RIC 職涯建議</strong>：適合設備工程師、製程工程師、機械維護工程師 — 在半導體或高科技製造業中發揮所長。
     </div>
 </div>
 
 <script>
-    // 進度條動畫
-    const fills = document.querySelectorAll('.progress-fill');
-    const animate = () => {
+    const fills = document.querySelectorAll('.bar-fill');
+    window.addEventListener('load', () => {
         fills.forEach(f => {
             const w = f.style.width;
             f.style.width = '0%';
             setTimeout(() => { f.style.width = w; }, 100);
         });
-    };
-    window.addEventListener('load', animate);
+    });
 </script>
 </body>
 </html>
