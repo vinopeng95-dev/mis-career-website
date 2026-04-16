@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>彭韋諾｜設備工程師</title>
-
 <style>
 * {
     margin: 0;
@@ -13,212 +12,312 @@
 }
 
 body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #f8fafc);
-    color: #1e293b;
+    font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    background: #0d111c;
+    color: #eaeef5;
 }
 
-/* NAV */
+/* 幾何背景 */
+.bg-geo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(145deg, #0a0f1a 0%, #111827 100%);
+}
+.bg-geo::before {
+    content: '';
+    position: absolute;
+    width: 80vmax;
+    height: 80vmax;
+    background: radial-gradient(circle, rgba(80, 200, 150, 0.08), transparent 70%);
+    top: -30vmax;
+    right: -20vmax;
+    border-radius: 50%;
+}
+.bg-geo::after {
+    content: '';
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    background: radial-gradient(circle, rgba(230, 150, 80, 0.06), transparent 70%);
+    bottom: -20vmax;
+    left: -20vmax;
+    border-radius: 50%;
+}
+
+/* 導航 - 右側垂直 */
 nav {
     position: fixed;
-    width: 100%;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
-
-nav .logo {
-    font-weight: bold;
-    color: #6366f1;
+    flex-direction: column;
+    gap: 0.8rem;
+    z-index: 100;
+    background: rgba(20, 25, 45, 0.7);
+    backdrop-filter: blur(12px);
+    padding: 1rem 0.6rem;
+    border-radius: 50px;
+    border: 1px solid rgba(80, 200, 150, 0.3);
 }
 
 nav a {
-    margin-left: 1.5rem;
+    color: #9aa5c0;
     text-decoration: none;
-    color: #475569;
-    transition: 0.3s;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 40px;
+    transition: 0.25s;
+    text-align: center;
+    writing-mode: horizontal-tb;
+    font-weight: 500;
 }
 
 nav a:hover {
-    color: #6366f1;
+    color: #50c896;
+    background: rgba(80, 200, 150, 0.15);
 }
 
-/* HERO */
+/* 主內容 */
+.main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 4rem 3rem 3rem;
+}
+
+/* Hero */
 .hero {
-    min-height: 100vh;
+    min-height: 85vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    padding: 2rem;
 }
 
-.hero-box {
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 3rem;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+.hero-badge {
+    background: rgba(80, 200, 150, 0.2);
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    color: #50c896;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    width: fit-content;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    background: linear-gradient(135deg, #6366f1, #22c55e);
-    -webkit-background-clip: text;
-    color: transparent;
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
-.hero p {
-    margin: 1rem 0 2rem;
-    color: #64748b;
+.hero h1 span {
+    color: #e69650;
+    text-shadow: 0 0 8px rgba(230, 150, 80, 0.3);
 }
 
-/* BUTTON */
-.btn {
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    margin: 0 0.5rem;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #6366f1, #22c55e);
-    color: white;
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(99,102,241,0.3);
-}
-
-.btn-outline {
-    border: 2px solid #6366f1;
-    color: #6366f1;
-}
-
-.btn-outline:hover {
-    background: #6366f1;
-    color: white;
-}
-
-/* SECTION */
-.section {
-    padding: 5rem 2rem;
-    text-align: center;
-}
-
-.section h2 {
-    font-size: 2rem;
+.hero-desc {
+    font-size: 1rem;
+    color: #a5b0c8;
+    max-width: 500px;
     margin-bottom: 2rem;
-    color: #334155;
+    line-height: 1.6;
 }
 
-/* CARDS */
-.cards {
+.btn-group {
     display: flex;
-    gap: 2rem;
-    justify-content: center;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-primary {
+    background: #e69650;
+    color: #0d111c;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #da823a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(230, 150, 80, 0.3);
+}
+
+.btn-outline {
+    border: 1.5px solid #50c896;
+    color: #50c896;
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: rgba(80, 200, 150, 0.1);
+    transform: translateY(-2px);
+}
+
+/* 卡片區 */
+.section-title {
+    font-size: 1.8rem;
+    margin: 3rem 0 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 45%;
+    height: 3px;
+    background: #e69650;
+    border-radius: 3px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
 .card {
-    width: 300px;
+    background: rgba(25, 32, 55, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 28px;
     padding: 2rem;
-    border-radius: 25px;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border: 1px solid rgba(80, 200, 150, 0.2);
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.03);
+    transform: translateY(-8px);
+    border-color: rgba(80, 200, 150, 0.6);
+    background: rgba(35, 42, 70, 0.8);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .card h3 {
-    color: #6366f1;
-    margin: 1rem 0;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #50c896;
 }
 
 .card p {
+    color: #b0bacf;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
     font-size: 0.9rem;
-    color: #64748b;
 }
 
-.card a {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #22c55e;
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #e69650;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
 }
 
-/* FOOTER */
+.card-link:hover {
+    gap: 0.8rem;
+    color: #f0a86a;
+}
+
 footer {
     text-align: center;
     padding: 2rem;
-    color: #94a3b8;
+    color: #6a738b;
+    font-size: 0.7rem;
+    border-top: 1px solid rgba(80, 200, 150, 0.1);
+    margin-top: 3rem;
 }
 
-/* RWD */
-@media(max-width:768px){
-    .hero h1 { font-size: 2.2rem; }
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        bottom: 1.5rem;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        background: rgba(20, 25, 45, 0.9);
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+    }
+    .main {
+        padding: 2rem 1.5rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 }
 </style>
 </head>
-
 <body>
 
+<div class="bg-geo"></div>
+
 <nav>
-    <div class="logo">Vino</div>
-    <div>
-        <a href="#home">首頁</a>
-        <a href="#explore">探索</a>
-        <a href="about.html">關於</a>
-    </div>
+    <a href="#home">首頁</a>
+    <a href="#explore">探索</a>
+    <a href="about.html">關於</a>
+    <a href="resume.html">履歷</a>
 </nav>
 
-<section class="hero" id="home">
-    <div class="hero-box">
-        <h1>彭韋諾</h1>
-        <p>設備工程師｜機械 × 製程 × 自動化</p>
-        <a href="#" class="btn btn-primary">應徵職缺</a>
-        <a href="about.html" class="btn btn-outline">認識我</a>
+<div class="main" id="home">
+    <div class="hero">
+        <div class="hero-badge">EQUIPMENT ENGINEER</div>
+        <h1>彭韋諾<br><span>精密機械 · 故障排除</span></h1>
+        <div class="hero-desc">從資訊管理跨足設備工程，以實作與分析能力，成為產線最信賴的技術專家。</div>
+        <div class="btn-group">
+            <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" class="btn btn-primary">🔧 104 應徵職缺</a>
+            <a href="about.html" class="btn btn-outline">📄 認識我</a>
+        </div>
     </div>
-</section>
 
-<section class="section" id="explore">
-    <h2>職涯探索</h2>
-
+    <div class="section-title" id="explore">職涯探索</div>
     <div class="cards">
         <div class="card">
+            <div class="card-icon">📊</div>
             <h3>何倫碼分析</h3>
-            <p>RIC類型，適合工程與問題解決導向職業。</p>
-            <a href="holland.html">查看 →</a>
+            <p>RIC 實作研究型 — 與設備工程師高度契合，喜歡動手解決問題並優化流程。</p>
+            <a href="holland.html" class="card-link">查看報告 →</a>
         </div>
-
         <div class="card">
+            <div class="card-icon">👤</div>
             <h3>關於我</h3>
-            <p>資管系學生，目標設備工程師。</p>
-            <a href="about.html">了解 →</a>
+            <p>資管系學生，熱愛硬體設備與自動化控制，目標成為頂尖設備工程師。</p>
+            <a href="about.html" class="card-link">了解更多 →</a>
         </div>
-
         <div class="card">
-            <h3>履歷</h3>
-            <p>技能、證照與未來規劃。</p>
-            <a href="resume.html">查看 →</a>
+            <div class="card-icon">📑</div>
+            <h3>專業履歷</h3>
+            <p>技能專長、證照規劃與職涯目標 — 持續精進，邁向設備專家。</p>
+            <a href="resume.html" class="card-link">檢視履歷 →</a>
         </div>
     </div>
-</section>
 
-<footer>
-    © 2026 彭韋諾
-</footer>
-
+    <footer>
+        <p>© 2026 彭韋諾｜設備工程師職涯網站</p>
+    </footer>
+</div>
 </body>
 </html>
