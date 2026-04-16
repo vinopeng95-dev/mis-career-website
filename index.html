@@ -1,414 +1,633 @@
-以下是根據您的要求修改後的網頁程式碼。我已將目標職業改為「設備工程師」，並新增了連結至指定104職缺頁面的按鈕，同時調整了相關內容。
-```html
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>彭韋諾 · 設備工程師職涯 | 專業履歷</title>
-  <!-- Google Fonts & Tailwind CSS + 自訂微調 -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'sans': ['Inter', 'system-ui', 'Segoe UI', 'sans-serif'],
-          },
-          colors: {
-            'vino-dark': '#1A1F2E',
-            'vino-accent': '#6C5CE7',
-            'vino-soft': '#A29BFE',
-            'vino-card': '#FFFFFF',
-            'vino-mint': '#00B894',
-            'vino-coral': '#FF7675',
-            'vino-gold': '#FDCB6E',
-            'equip-blue': '#1E6DFF',
-            'equip-dark': '#0A2540'
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards',
-            'scale-in': 'scaleIn 0.3s ease-out',
-          },
-          keyframes: {
-            fadeUp: {
-              '0%': { opacity: '0', transform: 'translateY(28px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            scaleIn: {
-              '0%': { opacity: '0', transform: 'scale(0.96)' },
-              '100%': { opacity: '1', transform: 'scale(1)' },
-            }
-          }
-        }
-      }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彭韋諾｜設備工程師職涯</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0B1120 0%, #0A0F1D 100%);
+    color: #E2E8F0;
+    line-height: 1.5;
+}
+
+/* 導航列 (固定 + 毛玻璃) */
+nav {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 1rem 1.5rem;
+    backdrop-filter: blur(16px);
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav a {
+    color: #CBD5E1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.25s ease;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    color: #F59E0B;
+    transform: translateY(-1px);
+}
+
+/* HERO 全版主視覺 */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #F59E0B;
+    filter: blur(130px);
+    opacity: 0.25;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #FDE68A, #F59E0B);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.hero .name-accent {
+    color: #FBBF24;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin: 1.2rem 0 1.8rem;
+    opacity: 0.85;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 按鈕組 */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    background: rgba(245, 158, 11, 0.9);
+    color: #0F172A;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid #F59E0B;
+    color: #FBBF24;
+}
+
+.btn-outline:hover {
+    background: #F59E0B;
+    color: #0F172A;
+    transform: scale(1.02);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    background: #F59E0B;
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+}
+
+/* 通用區塊 */
+.section {
+    padding: 5rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title span {
+    background: linear-gradient(135deg, #FDE68A, #F59E0B);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* 卡片網格 (與同學排版相似但細節不同) */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 2rem 1.8rem;
+    border-radius: 2rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: #1E293B;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    color: #FDE68A;
+}
+
+.card p {
+    color: #CBD5E1;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(51, 65, 85, 0.8);
+    padding: 0.6rem 1.4rem;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #F8FAFC;
+    font-weight: 500;
+    transition: 0.2s;
+    font-size: 0.9rem;
+}
+
+.card-link:hover {
+    background: #F59E0B;
+    color: #0F172A;
+    transform: scale(1.02);
+}
+
+/* 技能條區塊 (獨特風格) */
+.skills-container {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 2rem;
+    padding: 2rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skill-item {
+    margin-bottom: 1.3rem;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.skill-bar-bg {
+    background: #334155;
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.skill-bar {
+    background: linear-gradient(90deg, #F59E0B, #FCD34D);
+    width: 0%;
+    height: 100%;
+    border-radius: 20px;
+    transition: width 1s ease-out;
+}
+
+/* 模態窗 (彈窗) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1E293B;
+    max-width: 450px;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 1px solid #F59E0B40;
+    animation: fadeUp 0.25s ease;
+}
+
+.modal-content h3 {
+    color: #FBBF24;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.modal-content p, .modal-content ul {
+    text-align: left;
+    margin: 1rem 0;
+    color: #CBD5E1;
+}
+
+.modal-content ul {
+    padding-left: 1.5rem;
+}
+
+.modal-content li {
+    margin: 0.5rem 0;
+}
+
+.close-modal {
+    background: #F59E0B;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    border-radius: 40px;
+    font-weight: bold;
+    color: #0F172A;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: 0.2s;
+}
+
+.close-modal:hover {
+    background: #FBBF24;
+    transform: scale(0.98);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    .modal-transition { transition: opacity 0.25s ease, visibility 0.25s ease; }
-    body.modal-open { overflow: hidden; }
-    .skill-progress-bar {
-      transition: width 0.6s ease-out;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    .nav-link {
-      position: relative;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #02061780;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.85rem;
+    color: #94A3B8;
+    margin-top: 2rem;
+}
+
+/* 響應式 */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
     }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2.5px;
-      bottom: -4px;
-      left: 0;
-      background-color: #6C5CE7;
-      transition: width 0.25s ease;
-      border-radius: 4px;
+    .section {
+        padding: 3rem 1rem;
     }
-    .nav-link:hover::after,
-    .nav-link.active-nav::after {
-      width: 100%;
+    .section-title {
+        font-size: 1.8rem;
     }
-    .active-nav {
-      color: #6C5CE7;
-      font-weight: 600;
+    nav {
+        gap: 1.5rem;
+        font-size: 0.9rem;
     }
-    .hover-card {
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-    }
-    .hover-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
-    }
-    .btn-104 {
-      background: linear-gradient(135deg, #1E6DFF 0%, #0052CC 100%);
-      box-shadow: 0 4px 12px rgba(30, 109, 255, 0.3);
-      transition: all 0.2s ease;
-    }
-    .btn-104:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(30, 109, 255, 0.4);
-    }
-  </style>
+}
+</style>
 </head>
-<body class="bg-gray-50 font-sans antialiased text-gray-800">
+<body>
 
-  <!-- 導覽列 -->
-  <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
-    <div class="container mx-auto max-w-6xl px-5 md:px-8 py-3 flex flex-wrap items-center justify-between">
-      <div class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-vino-dark to-vino-accent bg-clip-text text-transparent">
-        彭韋諾
-      </div>
-      <ul class="flex flex-wrap gap-4 md:gap-7 text-sm md:text-base font-medium">
-        <li><a href="#about" class="nav-link text-gray-700 hover:text-vino-accent transition">關於我</a></li>
-        <li><a href="#career" class="nav-link text-gray-700 hover:text-vino-accent transition">職涯測驗</a></li>
-        <li><a href="#job" class="nav-link text-gray-700 hover:text-vino-accent transition">設備工程師</a></li>
-        <li><a href="#skills" class="nav-link text-gray-700 hover:text-vino-accent transition">技能專長</a></li>
-        <li><a href="#future" class="nav-link text-gray-700 hover:text-vino-accent transition">未來規劃</a></li>
-      </ul>
+<!-- 導航列（固定，類似同學設計但增加項目） -->
+<nav>
+    <a href="#home">首頁</a>
+    <a href="#career-goal">職涯定位</a>
+    <a href="#skills">專業技能</a>
+    <a href="#future-plan">未來藍圖</a>
+    <a href="#connect">連結104</a>
+</nav>
+
+<!-- HERO 主視覺區 -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <!-- 大頭照顯示：請確保路徑正確 (大頭照.png) -->
+        <div style="width: 120px; height: 120px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; border: 3px solid #F59E0B; box-shadow: 0 0 20px rgba(245,158,11,0.3);">
+            <img src="大頭照.png" alt="彭韋諾" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <h1>彭韋諾<span class="name-accent">.</span></h1>
+        <p>設備工程師 | 精密機械 x 故障排除 x 製程優化</p>
+        <div class="btn-group">
+            <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" class="btn">🔧 104 應徵設備工程師</a>
+            <button onclick="openModal('aboutModal')" class="btn btn-outline">📄 關於我</button>
+        </div>
     </div>
-  </nav>
+</section>
 
-  <!-- Hero 區塊：設備工程師主題 -->
-  <section class="py-20 md:py-28 bg-gradient-to-br from-blue-50 via-white to-indigo-50 text-center">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <div class="w-36 h-36 md:w-44 md:h-44 mx-auto mb-6 rounded-full bg-gradient-to-tr from-equip-blue to-vino-accent shadow-xl flex items-center justify-center overflow-hidden border-4 border-white">
-        <img src="大頭照.png" alt="彭韋諾 大頭照" class="w-full h-full object-cover">
-      </div>
-      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-800 mb-4">
-        你好，我是 <span class="bg-clip-text text-transparent bg-gradient-to-r from-equip-blue to-vino-accent">彭韋諾</span>
-      </h2>
-      <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
-        設備工程師 · 精密機械 x 故障排除 x 製程優化
-      </p>
-      <div class="flex flex-wrap justify-center gap-3 mt-10">
-        <span class="px-5 py-2 bg-white rounded-full shadow-md text-equip-blue font-semibold text-sm border border-equip-blue/20">🔧 設備維護</span>
-        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-mint font-semibold text-sm border border-vino-mint/30">⚙️ 精密校正</span>
-        <span class="px-5 py-2 bg-white rounded-full shadow-md text-vino-coral font-semibold text-sm border border-vino-coral/30">📊 製程改善</span>
-      </div>
-      <!-- 104 人力銀行按鈕 - 置於 Hero 醒目位置 -->
-      <div class="mt-10">
-        <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" rel="noopener noreferrer" class="btn-104 inline-flex items-center gap-3 px-8 py-4 bg-equip-blue text-white text-lg font-bold rounded-2xl transition-all shadow-lg hover:shadow-xl">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63c-.75.51-1.37 1.18-1.82 1.96H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8z"/>
-          </svg>
-          104 立即應徵 · 設備工程師職缺
-        </a>
-        <p class="text-sm text-gray-500 mt-3">⭐ 目標職位：半導體／科技大廠設備工程師</p>
-      </div>
+<!-- 卡片區塊：與同學版面相似但內容個人化 (三個核心卡片) -->
+<section class="section" id="career-goal">
+    <h2 class="section-title"><span>⚙️ 職涯核心定位</span></h2>
+    <div class="cards-grid">
+        <!-- 卡片 1：何倫碼分析 -->
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>何倫碼 RIC</h3>
+            <p>實作型＋研究型＋常規型，與設備工程師完美契合，喜歡動手解決問題並優化流程。</p>
+            <button onclick="openModal('hollandModal')" class="card-link">深入了解 →</button>
+        </div>
+        <!-- 卡片 2：設備工程師工作 -->
+        <div class="card">
+            <div class="card-icon">🔧</div>
+            <h3>設備工程師</h3>
+            <p>半導體/高科技廠房核心推手，負責機台維護、異常排除與效率提升。</p>
+            <button onclick="openModal('jobModal')" class="card-link">職務詳解 →</button>
+        </div>
+        <!-- 卡片 3：未來發展 -->
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3>五年願景</h3>
+            <p>從設備工程師起步，成為設備專案負責人，精通全廠自動化整合。</p>
+            <button onclick="openModal('futureModal')" class="card-link">規劃藍圖 →</button>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- 主內容區塊 -->
-  <main class="container mx-auto max-w-6xl px-5 md:px-8 py-12 space-y-24">
-    
-    <!-- 關於我 -->
-    <section id="about" class="scroll-mt-24">
-      <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10 hover-card transition-all border border-gray-100">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="flex-1">
-            <div class="inline-block px-4 py-1 rounded-full bg-vino-accent/10 text-vino-accent font-semibold text-sm mb-4">✨ 個人簡介</div>
-            <h3 class="text-3xl font-bold mb-4 text-gray-800">關於我</h3>
-            <p class="text-gray-600 leading-relaxed text-lg">我是彭韋諾，一名資訊管理系大二學生，但我對硬體設備、自動化控制與精密機械充滿熱情。善於邏輯分析與動手實作，喜歡拆解問題根源並找出最佳解決方案。目標是成為一名頂尖的設備工程師，在半導體或高科技製造業中，確保生產設備穩定運作，提升整體製程效率。</p>
-            <div class="mt-6 grid grid-cols-2 gap-3 text-sm">
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-equip-blue rounded-full"></span> 設備異常排除</div>
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-mint rounded-full"></span> PLC / 自動化基礎</div>
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-coral rounded-full"></span> 機械手臂操作概念</div>
-              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-vino-gold rounded-full"></span> 數據分析與報表</div>
-            </div>
-          </div>
-          <div class="md:w-1/3 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center">
-            <div class="text-5xl mb-2">🔧</div>
-            <p class="font-medium text-gray-700">「精密思維，讓設備發揮極致效能。」</p>
-          </div>
+<!-- 技能專長區塊 (保留獨特風格) -->
+<section class="section" id="skills">
+    <h2 class="section-title"><span>📈 設備工程核心能力</span></h2>
+    <div class="skills-container">
+        <div class="skill-item">
+            <div class="skill-info"><span>設備故障診斷 / 維修</span><span>75%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width: 75%;"></div></div>
         </div>
-      </div>
-    </section>
-
-    <!-- 職涯測驗 ＋ 何倫碼 (RIC 轉換為設備工程師特質) -->
-    <section id="career" class="scroll-mt-24 bg-gradient-to-r from-equip-blue/5 to-transparent rounded-3xl p-1">
-      <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
-        <div class="text-center mb-8">
-          <span class="px-5 py-1.5 rounded-full bg-equip-blue/10 text-equip-blue font-semibold text-sm">🔮 職涯定位</span>
-          <h3 class="text-3xl font-bold mt-3">何倫碼測驗結果 · RIC 實作研究型</h3>
+        <div class="skill-item">
+            <div class="skill-info"><span>PLC 程式基礎</span><span>60%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width: 60%;"></div></div>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-equip-blue">
-            <h4 class="text-xl font-bold text-equip-blue">R 實作型</h4>
-            <p class="text-gray-600 mt-2">喜歡親手操作、維修設備、動手解決機械或電控問題，擅長工具應用。</p>
-          </div>
-          <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-vino-mint">
-            <h4 class="text-xl font-bold text-vino-mint">I 研究型</h4>
-            <p class="text-gray-600 mt-2">善於分析設備數據、尋找異常根源，規劃預防保養計畫與改善對策。</p>
-          </div>
-          <div class="bg-gray-50 p-5 rounded-2xl border-l-4 border-vino-coral">
-            <h4 class="text-xl font-bold text-vino-coral">C 常規型</h4>
-            <p class="text-gray-600 mt-2">重視標準作業流程，細心執行設備點檢與紀錄，確保生產穩定。</p>
-          </div>
+        <div class="skill-item">
+            <div class="skill-info"><span>機械識圖 / 氣壓迴路</span><span>70%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width: 70%;"></div></div>
         </div>
-        <p class="mt-6 text-gray-700 bg-blue-50 p-4 rounded-xl">✨ 這項結果與設備工程師高度契合——從實作維修到數據分析，再到標準化作業，完整對應職務需求。</p>
-      </div>
-    </section>
-
-    <!-- 設備工程師工作介紹 + 104 第二按鈕 -->
-    <section id="job" class="scroll-mt-24">
-      <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
-        <div class="flex justify-between items-center flex-wrap gap-3 mb-4">
-          <div><span class="px-4 py-1 bg-equip-blue/10 rounded-full text-equip-blue text-sm">⚙️ 夢想職務</span></div>
+        <div class="skill-item">
+            <div class="skill-info"><span>數據分析 (Excel / Python)</span><span>65%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width: 65%;"></div></div>
         </div>
-        <h3 class="text-3xl font-bold mb-4">設備工程師 — 產線核心推手</h3>
-        <p class="text-gray-600 text-lg leading-relaxed">我熱愛研究精密機械與自動化設備，設備工程師不僅要維護機台穩定，更要透過數據分析提升設備總和效率(OEE)。這份工作結合機械、電控與管理思維，與我的實作熱情及分析能力完美契合。</p>
-        <div class="grid md:grid-cols-2 gap-8 mt-8">
-          <div>
-            <h4 class="text-xl font-semibold flex items-center gap-2"><span class="text-equip-blue">📋</span> 核心工作內容</h4>
-            <ul class="mt-3 space-y-2 text-gray-700">
-              <li>• 半導體/面板/LED 製程設備日常維護與保養</li>
-              <li>• 設備異常排除、故障分析與改善報告撰寫</li>
-              <li>• 提升機台妥善率與生產效率 (OEE 監控)</li>
-              <li>• 與製程工程師協作，進行設備參數最佳化</li>
-              <li>• 設備備品管理及成本降低專案</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-xl font-semibold flex items-center gap-2"><span class="text-vino-mint">⚙️</span> 必備技能樹</h4>
-            <ul class="mt-3 space-y-2 text-gray-700">
-              <li>• 機械識圖與氣壓/電路基礎</li>
-              <li>• PLC 與人機介面基礎概念</li>
-              <li>• 設備維修與預防保養規劃</li>
-              <li>• 數據分析工具 (Excel, 基礎Python)</li>
-              <li>• 溝通協調能力 (跨部門合作)</li>
-            </ul>
-          </div>
+        <div class="skill-item">
+            <div class="skill-info"><span>預防保養規劃 / TPM</span><span>55%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width: 55%;"></div></div>
         </div>
-        <!-- 第二個 104 按鈕 (置於工作區塊) -->
-        <div class="mt-8 flex flex-wrap justify-between items-center gap-4">
-          <button onclick="openModal('equipModal')" class="inline-flex items-center gap-2 bg-vino-accent text-white px-5 py-2.5 rounded-xl hover:bg-vino-dark transition shadow-md">🔍 了解更多設備工程師細節</button>
-          <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-equip-blue text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-equip-dark transition shadow-md">
-            📢 104 查看完整職缺描述
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 技能專長 (設備工程師導向) -->
-    <section id="skills" class="scroll-mt-24">
-      <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
-        <div class="text-center mb-6"><span class="px-4 py-1 bg-equip-blue/10 rounded-full text-equip-blue text-sm">📊 專業技能</span></div>
-        <h3 class="text-3xl font-bold text-center mb-8">設備工程核心能力</h3>
-        <div class="max-w-2xl mx-auto space-y-6">
-          <div><div class="flex justify-between mb-1 font-medium"><span>設備故障診斷 / 維修</span><span>75%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-equip-blue h-3 rounded-full" style="width:75%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>PLC 程式基礎</span><span>60%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-mint h-3 rounded-full" style="width:60%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>機械識圖 / 氣壓迴路</span><span>70%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-coral h-3 rounded-full" style="width:70%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>數據分析 (Excel / Python)</span><span>65%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-vino-gold h-3 rounded-full" style="width:65%"></div></div></div>
-          <div><div class="flex justify-between mb-1 font-medium"><span>預防保養規劃 / TPM</span><span>55%</span></div><div class="w-full bg-gray-200 rounded-full h-3"><div class="skill-progress-bar bg-indigo-400 h-3 rounded-full" style="width:55%"></div></div></div>
-        </div>
-        <p class="text-center text-gray-500 text-sm mt-8">持續精進自動化與機電整合能力，目標取得工業4.0相關認證</p>
-      </div>
-    </section>
-
-    <!-- 未來規劃 + 三個互動卡片 -->
-    <section id="future" class="scroll-mt-24">
-      <div class="bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-3xl p-6 md:p-10 shadow-lg">
-        <div class="text-center mb-10">
-          <span class="bg-equip-blue/10 text-equip-blue px-5 py-1.5 rounded-full text-sm font-semibold">🚀 設備工程師養成藍圖</span>
-          <h3 class="text-3xl md:text-4xl font-bold mt-4 text-gray-800">未來充實計畫</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto mt-2">短中長期目標，成為半導體/高科技設備專家</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-          <button onclick="openModal('planShort')" class="group text-left bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl transition-all hover:scale-[1.02] border border-gray-100">
-            <div class="text-4xl mb-3">📘</div>
-            <h4 class="text-xl font-extrabold text-equip-blue">一年內計畫</h4>
-            <p class="text-gray-500 mt-2 text-sm">強化機械與電學基礎，考取「工業電子」或「自動化工程師」認證...</p>
-            <span class="inline-block mt-4 text-equip-blue text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
-          </button>
-          <button onclick="openModal('planMid')" class="group text-left bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl transition-all hover:scale-[1.02] border border-gray-100">
-            <div class="text-4xl mb-3">💼</div>
-            <h4 class="text-xl font-extrabold text-vino-mint">三年內計畫</h4>
-            <p class="text-gray-500 mt-2 text-sm">爭取設備工程師實習，熟悉半導體設備 (黃光/蝕刻/薄膜) 維護...</p>
-            <span class="inline-block mt-4 text-vino-mint text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
-          </button>
-          <button onclick="openModal('planLong')" class="group text-left bg-white rounded-2xl p-7 shadow-md hover:shadow-2xl transition-all hover:scale-[1.02] border border-gray-100">
-            <div class="text-4xl mb-3">🏆</div>
-            <h4 class="text-xl font-extrabold text-vino-coral">五年內願景</h4>
-            <p class="text-gray-500 mt-2 text-sm">成為設備專案 leader，熟悉全廠自動化整合，邁向設備主管...</p>
-            <span class="inline-block mt-4 text-vino-coral text-sm font-semibold group-hover:underline">點擊展開 ➔</span>
-          </button>
-        </div>
-        <!-- 自傳履歷區 -->
-        <div class="mt-12 bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200">
-          <h4 class="text-xl font-bold flex items-center gap-2">📄 自傳 / 核心履歷</h4>
-          <p class="text-gray-700 mt-2 leading-relaxed">我是彭韋諾，具備資訊管理的邏輯思維，同時對設備領域充滿熱忱。在校修習「機電整合概論」、「自動化控制」等課程，並自學PLC基礎。個性細心且擅長團隊合作，樂於挑戰技術難題。期望能進入半導體或高科技製造業，從設備工程師起步，為公司貢獻產能並持續成長。</p>
-          <div class="flex flex-wrap gap-3 mt-5 text-sm">
-            <span class="bg-gray-100 px-3 py-1 rounded-full">🎓 資管系 + 自動化學程</span>
-            <span class="bg-gray-100 px-3 py-1 rounded-full">🔧 丙級工業電子證照 (準備中)</span>
-            <span class="bg-gray-100 px-3 py-1 rounded-full">📈 設備保養實務競賽經驗</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="mt-20 bg-white border-t border-gray-200 py-8 text-center text-gray-500 text-sm">
-    <p>© 2026 彭韋諾 · 設備工程師職涯網站 | 致力於精密設備領域</p>
-    <p class="mt-1 text-xs opacity-70">以實作與分析能力，成為產線最信賴的設備專家</p>
-  </footer>
-
-  <!-- ==================== 模態窗區塊 ==================== -->
-  <!-- 設備工程師細節模態 -->
-  <div id="equipModal" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('equipModal')"></div>
-    <div class="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl p-8 transform transition-all scale-95">
-      <h3 class="text-2xl font-bold text-equip-blue border-b pb-2 mb-4">設備工程師 進階技能</h3>
-      <ul class="space-y-3 text-gray-700">
-        <li>🔹 <strong>精密機械知識</strong>：了解軸承、馬達、傳動機構原理。</li>
-        <li>🔹 <strong>故障樹分析 (FTA)</strong>：系統化找出異常根本原因。</li>
-        <li>🔹 <strong>SECS/GEM 通訊協定</strong>：半導體設備連線基礎。</li>
-        <li>🔹 <strong>設備總和效率 (OEE) 改善</strong>：提升產能關鍵指標。</li>
-      </ul>
-      <button onclick="closeModal('equipModal')" class="mt-6 w-full py-3 bg-gray-100 rounded-xl font-semibold hover:bg-gray-200 transition">關閉</button>
     </div>
-  </div>
+</section>
 
-  <!-- 一年計畫模態 -->
-  <div id="planShort" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('planShort')"></div>
-    <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl p-8">
-      <div class="text-equip-blue text-3xl mb-2">📚 一年內具體行動</div>
-      <ul class="list-disc pl-5 space-y-2 text-gray-700 mt-3">
-        <li>考取「工業電子丙級」或「自動化工程師 Level 1」證照。</li>
-        <li>完成線上 PLC 基礎課程 (西門子/三菱) 並實作小專案。</li>
-        <li>參與科技廠設備導覽/產學合作活動，累積業界認知。</li>
-        <li>強化機械製圖與氣壓迴路識圖能力。</li>
-      </ul>
-      <button onclick="closeModal('planShort')" class="mt-6 w-full py-2.5 bg-gray-100 rounded-xl font-medium">關閉</button>
+<!-- 未來規劃 / 短中長期計畫 (卡片式類似同學版面但內容不同) -->
+<section class="section" id="future-plan">
+    <h2 class="section-title"><span>📌 階段性成長計畫</span></h2>
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">📘</div>
+            <h3>一年內</h3>
+            <p>考取工業電子/自動化工程師認證，完成PLC基礎實作，強化設備基礎知識。</p>
+            <button onclick="openModal('plan1Modal')" class="card-link">展開計畫 →</button>
+        </div>
+        <div class="card">
+            <div class="card-icon">💼</div>
+            <h3>三年內</h3>
+            <p>進入半導體大廠實習或任職，熟悉黃光/蝕刻設備，累積實戰維修經驗。</p>
+            <button onclick="openModal('plan2Modal')" class="card-link">展開計畫 →</button>
+        </div>
+        <div class="card">
+            <div class="card-icon">🏆</div>
+            <h3>五年內</h3>
+            <p>成為設備專案改善Leader，領導團隊導入預測性保養，邁向設備主管。</p>
+            <button onclick="openModal('plan3Modal')" class="card-link">展開計畫 →</button>
+        </div>
     </div>
-  </div>
+</section>
 
-  <!-- 三年計畫模態 -->
-  <div id="planMid" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('planMid')"></div>
-    <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl p-8">
-      <div class="text-vino-mint text-3xl mb-2">💡 三年職涯躍進</div>
-      <ul class="list-disc pl-5 space-y-2 text-gray-700 mt-3">
-        <li>應徵半導體/面板廠設備工程師實習或正職。</li>
-        <li>熟悉至少一種設備類型 (曝光機/蝕刻/檢測機台) 維護。</li>
-        <li>取得「機電整合」或「工業4.0」相關中階認證。</li>
-        <li>建立設備維修知識庫，累積解決案例。</li>
-      </ul>
-      <button onclick="closeModal('planMid')" class="mt-6 w-full py-2.5 bg-gray-100 rounded-xl font-medium">關閉</button>
+<!-- 104 快速連結區塊 (類似獨立卡片) -->
+<section class="section" id="connect" style="padding-top: 1rem;">
+    <div style="background: linear-gradient(135deg, #1E293B, #0F172A); border-radius: 2rem; padding: 2rem; text-align: center; border: 1px solid #F59E0B40;">
+        <h3 style="font-size: 1.7rem; margin-bottom: 1rem;">🎯 立即探索設備工程師職缺</h3>
+        <p style="margin-bottom: 1.5rem;">查看104人力銀行，準備好履歷，朝夢想職務前進！</p>
+        <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" class="btn" style="background:#F59E0B; padding: 0.8rem 2rem;">📢 前往104職缺頁面</a>
     </div>
-  </div>
+</section>
 
-  <!-- 五年計畫模態 -->
-  <div id="planLong" class="modal fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 invisible transition-all duration-300">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('planLong')"></div>
-    <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl p-8">
-      <div class="text-vino-coral text-3xl mb-2">🌟 五年願景藍圖</div>
-      <ul class="list-disc pl-5 space-y-2 text-gray-700 mt-3">
-        <li>成為設備專案改善負責人，領導跨部門維修團隊。</li>
-        <li>深入學習大數據分析預測性保養 (PdM)。</li>
-        <li>取得「設備工程師」或「CVD/PVD」原廠認證。</li>
-        <li>朝設備主管或製程整合工程師發展。</li>
-      </ul>
-      <button onclick="closeModal('planLong')" class="mt-6 w-full py-2.5 bg-gray-100 rounded-xl font-medium">關閉</button>
+<footer>
+    © 2026 彭韋諾 · 設備工程師職涯網站 | 基於實作 x 分析 x 持續成長
+</footer>
+
+<!-- 模態窗區塊 (五個彈窗) -->
+<div id="aboutModal" class="modal">
+    <div class="modal-content">
+        <h3>📌 關於彭韋諾</h3>
+        <p>我是資管系大二學生，但對精密機械與自動化設備充滿熱情，善於邏輯分析與故障排除，目標成為頂尖設備工程師，在半導體產業貢獻所長。</p>
+        <button class="close-modal" onclick="closeModal('aboutModal')">關閉</button>
     </div>
-  </div>
+</div>
 
-  <script>
+<div id="hollandModal" class="modal">
+    <div class="modal-content">
+        <h3>📊 何倫碼 RIC 解析</h3>
+        <p><strong>R (實作型)</strong> : 喜愛動手操作、維修設備。<br>
+        <strong>I (研究型)</strong> : 善於分析數據、尋找異常根源。<br>
+        <strong>C (常規型)</strong> : 重視SOP，細心維護設備紀錄。<br>
+        與設備工程師高度適配！</p>
+        <button class="close-modal" onclick="closeModal('hollandModal')">關閉</button>
+    </div>
+</div>
+
+<div id="jobModal" class="modal">
+    <div class="modal-content">
+        <h3>🔧 設備工程師核心任務</h3>
+        <ul>
+            <li>半導體製程設備日常維護與保養</li>
+            <li>設備異常排除 & 故障分析報告</li>
+            <li>提升機台妥善率與OEE</li>
+            <li>設備參數最佳化 & 備品管理</li>
+        </ul>
+        <button class="close-modal" onclick="closeModal('jobModal')">關閉</button>
+    </div>
+</div>
+
+<div id="futureModal" class="modal">
+    <div class="modal-content">
+        <h3>🚀 五年願景</h3>
+        <p>從設備工程師起步，累積維運與專案經驗，成為設備改善Leader，並導入智慧製造技術，最終朝設備主管或製程整合角色發展。</p>
+        <button class="close-modal" onclick="closeModal('futureModal')">關閉</button>
+    </div>
+</div>
+
+<div id="plan1Modal" class="modal">
+    <div class="modal-content">
+        <h3>📘 一年內行動方案</h3>
+        <ul>
+            <li>考取「工業電子丙級」或「自動化工程師 Level 1」</li>
+            <li>完成PLC基礎課程並實作小型控制系統</li>
+            <li>參與科技廠設備導覽/產學活動</li>
+        </ul>
+        <button class="close-modal" onclick="closeModal('plan1Modal')">關閉</button>
+    </div>
+</div>
+
+<div id="plan2Modal" class="modal">
+    <div class="modal-content">
+        <h3>💼 三年內里程碑</h3>
+        <ul>
+            <li>進入半導體/面板廠設備工程師實習或正職</li>
+            <li>熟悉曝光、蝕刻或薄膜設備維護</li>
+            <li>取得機電整合相關中階認證</li>
+        </ul>
+        <button class="close-modal" onclick="closeModal('plan2Modal')">關閉</button>
+    </div>
+</div>
+
+<div id="plan3Modal" class="modal">
+    <div class="modal-content">
+        <h3>🏆 五年長期目標</h3>
+        <ul>
+            <li>成為設備專案改善負責人，帶領團隊</li>
+            <li>導入大數據預測性保養(PdM)</li>
+            <li>取得原廠高階設備認證，邁向設備主管</li>
+        </ul>
+        <button class="close-modal" onclick="closeModal('plan3Modal')">關閉</button>
+    </div>
+</div>
+
+<script>
+    // 模態窗函數
     function openModal(id) {
-      const modal = document.getElementById(id);
-      if (!modal) return;
-      modal.classList.remove('opacity-0', 'invisible');
-      modal.classList.add('opacity-100', 'visible');
-      document.body.classList.add('modal-open');
-      document.body.style.overflow = 'hidden';
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
     }
     function closeModal(id) {
-      const modal = document.getElementById(id);
-      if (!modal) return;
-      modal.classList.add('opacity-0', 'invisible');
-      modal.classList.remove('opacity-100', 'visible');
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
     }
-    window.addEventListener('click', function(e) {
-      if (e.target.classList && e.target.classList.contains('modal')) {
-        closeModal(e.target.id);
-      }
+    // 點擊背景關閉
+    window.onclick = function(event) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+    // 技能條動畫：進入可視範圍時觸發
+    const skillBars = document.querySelectorAll('.skill-bar');
+    function animateSkills() {
+        skillBars.forEach(bar => {
+            const width = bar.style.width;
+            if (width && width !== '0%') {
+                bar.style.width = '0%';
+                setTimeout(() => { bar.style.width = width; }, 100);
+            } else if (width === '0%') {
+                // 初次加載時恢復原寬度
+                const originalWidth = bar.getAttribute('data-width') || bar.style.width;
+                if (originalWidth) bar.style.width = originalWidth;
+            }
+        });
+    }
+    // 設置每個skill-bar屬性紀錄原始寬度
+    skillBars.forEach(bar => {
+        const currentWidth = bar.style.width;
+        if (currentWidth) bar.setAttribute('data-width', currentWidth);
     });
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    function setActiveNav() {
-      let current = '';
-      const scrollPos = window.scrollY + 150;
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active-nav');
-        const href = link.getAttribute('href')?.substring(1);
-        if (href === current) {
-          link.classList.add('active-nav');
-        }
-      });
-    }
-    window.addEventListener('scroll', setActiveNav);
-    window.addEventListener('load', setActiveNav);
-    const skillBars = document.querySelectorAll('.skill-progress-bar');
-    const animateSkills = () => {
-      skillBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0%';
-        setTimeout(() => { bar.style.width = width; }, 100);
-      });
-    };
-    window.addEventListener('load', animateSkills);
-  </script>
+    // 監聽滾動，簡單實現進入視窗動畫
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bars = entry.target.querySelectorAll('.skill-bar');
+                bars.forEach(bar => {
+                    const orig = bar.getAttribute('data-width');
+                    if (orig && bar.style.width !== orig) {
+                        bar.style.width = orig;
+                    }
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+    const skillsContainer = document.querySelector('.skills-container');
+    if (skillsContainer) observer.observe(skillsContainer);
+    // 頁面加載時顯示技能條
+    window.addEventListener('load', () => {
+        skillBars.forEach(bar => {
+            const orig = bar.getAttribute('data-width');
+            if (orig) bar.style.width = orig;
+        });
+    });
+</script>
 </body>
 </html>
-```
