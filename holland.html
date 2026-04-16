@@ -1,271 +1,251 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>彭韋諾 · 何倫碼分析</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彭韋諾 · 何倫碼分析</title>
 
-        body {
-            background: #0d0f1a;
-            font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-            color: #f0f0f0;
-            padding: 2rem;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1e293b;
+}
 
-        /* 返回區塊 */
-        .top-nav {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 2rem;
-        }
-        .back-link {
-            background: rgba(80, 180, 180, 0.15);
-            border: 1px solid #50b4b4;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            color: #50b4b4;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.25s;
-        }
-        .back-link:hover {
-            background: #50b4b4;
-            color: #0d0f1a;
-        }
+/* 背景光暈 */
+.bg-glow::before,
+.bg-glow::after {
+    content: '';
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+}
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .header .chip {
-            background: rgba(80, 180, 180, 0.2);
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            color: #50b4b4;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #e0e0e0, #50b4b4);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+.bg-glow::before {
+    background: #6366f1;
+    top: -100px;
+    left: -100px;
+}
 
-        /* 主內容雙欄 */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 2rem;
-        }
+.bg-glow::after {
+    background: #22c55e;
+    bottom: -100px;
+    right: -100px;
+}
 
-        /* 左側主要結果 */
-        .result-area {
-            background: linear-gradient(145deg, #151a2a, #0f121f);
-            border-radius: 2rem;
-            padding: 2rem;
-            border: 1px solid rgba(80, 180, 180, 0.3);
-            text-align: center;
-        }
-        .big-code {
-            font-size: 6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #50b4b4, #ff8c5a);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            line-height: 1;
-        }
-        .result-sub {
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin: 0.5rem 0 1rem;
-            color: #50b4b4;
-        }
-        .result-text {
-            color: #aab0c0;
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-        .pill-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-        .pill {
-            background: rgba(80, 180, 180, 0.15);
-            padding: 0.2rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            color: #50b4b4;
-        }
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem;
+}
 
-        /* 右側量表 */
-        .stats {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .stat-row {
-            background: rgba(20, 25, 40, 0.7);
-            border-radius: 1.2rem;
-            padding: 1rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            border: 1px solid rgba(80, 180, 180, 0.15);
-        }
-        .stat-row.active {
-            border-left: 4px solid #50b4b4;
-            background: rgba(80, 180, 180, 0.08);
-        }
-        .stat-label {
-            width: 85px;
-        }
-        .stat-code {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #50b4b4;
-        }
-        .stat-name {
-            font-size: 0.7rem;
-            color: #8890a0;
-        }
-        .bar-area {
-            flex: 1;
-            min-width: 150px;
-        }
-        .bar-bg {
-            background: #2a2f45;
-            height: 8px;
-            border-radius: 10px;
-        }
-        .bar-fill {
-            height: 100%;
-            border-radius: 10px;
-            background: linear-gradient(90deg, #50b4b4, #ff8c5a);
-            width: 0%;
-            transition: width 1s ease;
-        }
-        .stat-score {
-            width: 70px;
-            text-align: right;
-            font-weight: 600;
-            color: #ff8c5a;
-        }
+/* 返回 */
+.top-nav {
+    text-align: right;
+    margin-bottom: 2rem;
+}
 
-        .footer-note {
-            margin-top: 2rem;
-            padding: 1.2rem;
-            background: rgba(20, 25, 40, 0.5);
-            border-radius: 1.5rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #8890a0;
-            border: 1px dashed rgba(80, 180, 180, 0.3);
-        }
+.back-link {
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #6366f1;
+    font-weight: bold;
+}
 
-        @media (max-width: 850px) {
-            .two-col { grid-template-columns: 1fr; }
-            .big-code { font-size: 4rem; }
-            .header h1 { font-size: 2rem; }
-        }
-    </style>
+/* 標題 */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #6366f1, #22c55e);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* 主卡片 */
+.main-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+.big-code {
+    font-size: 5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1, #22c55e);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.result-sub {
+    color: #6366f1;
+    margin: 1rem 0;
+}
+
+.result-text {
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* 技能標籤 */
+.pills {
+    margin-top: 1.5rem;
+}
+
+.pill {
+    display: inline-block;
+    margin: 0.3rem;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    background: #6366f1;
+    color: white;
+    font-size: 0.8rem;
+}
+
+/* 量表區 */
+.stats {
+    display: grid;
+    gap: 1rem;
+}
+
+.stat {
+    background: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.stat-name {
+    font-weight: bold;
+}
+
+.bar {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #6366f1, #22c55e);
+    transition: 1s;
+}
+
+/* Footer */
+.footer {
+    margin-top: 2rem;
+    text-align: center;
+    color: #64748b;
+}
+
+</style>
 </head>
-<body>
+
+<body class="bg-glow">
+
 <div class="container">
+
     <div class="top-nav">
         <a href="index.html" class="back-link">← 返回主頁</a>
     </div>
 
     <div class="header">
-        <div class="chip">HOLLAND CODE</div>
-        <h1>職涯人格分析</h1>
+        <h1>何倫碼分析</h1>
     </div>
 
-    <div class="two-col">
-        <div class="result-area">
-            <div class="big-code">RIC</div>
-            <div class="result-sub">實用型 · 研究型 · 常規型</div>
-            <div class="result-text">
-                我的核心特質為 <strong>實用型 (R)</strong>，搭配研究型 (I) 與常規型 (C)。<br>
-                喜歡動手操作、分析問題根源，並透過標準化流程提升效率 — 與設備工程師職務完美契合。
-            </div>
-            <div class="pill-group">
-                <span class="pill">🔧 動手實作</span>
-                <span class="pill">📊 數據分析</span>
-                <span class="pill">📋 標準流程</span>
-            </div>
+    <div class="main-card">
+        <div class="big-code">RIC</div>
+        <div class="result-sub">實用型 × 研究型 × 常規型</div>
+        <div class="result-text">
+            你擅長動手操作與分析問題，並透過流程優化提升效率，
+            非常適合設備工程師與製程相關職位。
         </div>
 
-        <div class="stats">
-            <div class="stat-row active">
-                <div class="stat-label"><div class="stat-code">R</div><div class="stat-name">實用型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div></div>
-                <div class="stat-score">88%</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">I</div><div class="stat-name">研究型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 72%;"></div></div></div>
-                <div class="stat-score">72%</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">C</div><div class="stat-name">常規型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 65%;"></div></div></div>
-                <div class="stat-score">65%</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">E</div><div class="stat-name">企業型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 48%;"></div></div></div>
-                <div class="stat-score">48%</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">S</div><div class="stat-name">社會型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 42%;"></div></div></div>
-                <div class="stat-score">42%</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><div class="stat-code">A</div><div class="stat-name">藝術型</div></div>
-                <div class="bar-area"><div class="bar-bg"><div class="bar-fill" style="width: 35%;"></div></div></div>
-                <div class="stat-score">35%</div>
-            </div>
+        <div class="pills">
+            <span class="pill">動手實作</span>
+            <span class="pill">數據分析</span>
+            <span class="pill">流程優化</span>
         </div>
     </div>
 
-    <div class="footer-note">
-        📌 <strong>RIC 職涯建議</strong>：適合設備工程師、製程工程師、機械維護工程師 — 在半導體或高科技製造業中發揮所長。
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-top"><span>R 實用型</span><span>88%</span></div>
+            <div class="bar"><div class="bar-fill" data-width="88%"></div></div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top"><span>I 研究型</span><span>72%</span></div>
+            <div class="bar"><div class="bar-fill" data-width="72%"></div></div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top"><span>C 常規型</span><span>65%</span></div>
+            <div class="bar"><div class="bar-fill" data-width="65%"></div></div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top"><span>E 企業型</span><span>48%</span></div>
+            <div class="bar"><div class="bar-fill" data-width="48%"></div></div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top"><span>S 社會型</span><span>42%</span></div>
+            <div class="bar"><div class="bar-fill" data-width="42%"></div></div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top"><span>A 藝術型</span><span>35%</span></div>
+            <div class="bar"><div class="bar-fill" data-width="35%"></div></div>
+        </div>
     </div>
+
+    <div class="footer">
+        📌 適合職業：設備工程師、製程工程師、機械工程
+    </div>
+
 </div>
 
 <script>
-    const fills = document.querySelectorAll('.bar-fill');
-    window.addEventListener('load', () => {
-        fills.forEach(f => {
-            const w = f.style.width;
-            f.style.width = '0%';
-            setTimeout(() => { f.style.width = w; }, 100);
-        });
+const bars = document.querySelectorAll('.bar-fill');
+
+window.onload = () => {
+    bars.forEach(bar => {
+        let width = bar.getAttribute('data-width');
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 200);
     });
+};
 </script>
+
 </body>
 </html>
