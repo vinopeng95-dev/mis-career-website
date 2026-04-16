@@ -13,188 +13,186 @@
 
 body {
     font-family: 'Segoe UI', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-    background: #0a0c15;
-    color: #e8edf5;
+    background: #1a1a2e;
+    color: #eee;
 }
 
-/* 動態背景 */
-.bg-orb {
+/* 動態波浪背景 */
+.wave-bg {
     position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
     z-index: -2;
-    background: radial-gradient(circle at 20% 30%, #1a2a3a, #0a0c15);
+    background: linear-gradient(125deg, #16213e 0%, #0f0f1f 100%);
 }
 
-.bg-orb::before {
-    content: '';
+.wave-bg svg {
     position: absolute;
-    width: 60vmax;
-    height: 60vmax;
-    background: radial-gradient(circle, rgba(0, 180, 180, 0.15), transparent 70%);
-    top: -20vmax;
-    right: -10vmax;
-    border-radius: 50%;
-    pointer-events: none;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    opacity: 0.25;
 }
 
-.bg-orb::after {
-    content: '';
-    position: absolute;
-    width: 50vmax;
-    height: 50vmax;
-    background: radial-gradient(circle, rgba(220, 120, 60, 0.1), transparent 70%);
-    bottom: -15vmax;
-    left: -10vmax;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-/* 導航 */
+/* 導航 - 側邊垂直式 */
 nav {
     position: fixed;
-    width: 100%;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    padding: 1rem 1.5rem;
-    background: rgba(10, 12, 21, 0.75);
+    flex-direction: column;
+    gap: 1.2rem;
+    z-index: 100;
+    background: rgba(30, 30, 50, 0.6);
     backdrop-filter: blur(12px);
-    z-index: 999;
-    border-bottom: 1px solid rgba(100, 200, 200, 0.2);
+    padding: 1.2rem 0.8rem;
+    border-radius: 60px;
+    border: 1px solid rgba(255, 160, 80, 0.3);
 }
 
 nav a {
-    color: #b4c2e0;
+    color: #aaa;
     text-decoration: none;
-    font-weight: 500;
+    font-size: 0.8rem;
+    writing-mode: horizontal-tb;
+    padding: 0.5rem 0.8rem;
+    border-radius: 40px;
     transition: 0.25s;
-    letter-spacing: 0.5px;
-    padding: 0.25rem 0;
+    text-align: center;
+    font-weight: 500;
 }
 
 nav a:hover {
-    color: #64ffda;
-    transform: translateY(-1px);
+    color: #ffa050;
+    background: rgba(255, 160, 80, 0.15);
 }
 
-/* Hero */
+/* 主內容 */
+.main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 3rem 4rem 8rem;
+}
+
+/* Hero 區塊 */
 .hero {
-    min-height: 100vh;
+    min-height: 85vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    text-align: center;
-    position: relative;
-    padding: 2rem;
 }
 
-.hero-content {
-    max-width: 800px;
+.hero-badge {
+    background: rgba(255, 160, 80, 0.2);
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    color: #ffa050;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    width: fit-content;
 }
 
 .hero h1 {
     font-size: 4rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #e2e8f0, #64ffda, #f59e0b);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    color: #94a3b8;
-    margin: 1rem 0 2rem;
+.hero h1 span {
+    color: #ffa050;
+    text-shadow: 0 0 10px rgba(255, 160, 80, 0.3);
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    color: #bbb;
+    max-width: 550px;
+    margin-bottom: 2rem;
 }
 
 .btn-group {
     display: flex;
-    gap: 1.2rem;
-    justify-content: center;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 0.75rem 2rem;
-    border-radius: 60px;
-    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
     text-decoration: none;
-    transition: all 0.25s ease;
-    background: rgba(100, 255, 218, 0.15);
-    border: 1px solid #64ffda;
-    color: #64ffda;
+    font-weight: 600;
+    transition: 0.25s;
 }
 
 .btn-primary {
-    background: #64ffda;
-    color: #0a0c15;
+    background: #ffa050;
+    color: #1a1a2e;
     border: none;
 }
 
 .btn-primary:hover {
-    background: #4cd8b8;
+    background: #ff8c2a;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 160, 80, 0.3);
+}
+
+.btn-outline {
+    border: 1.5px solid #ffa050;
+    color: #ffa050;
+    background: transparent;
 }
 
 .btn-outline:hover {
-    background: rgba(100, 255, 218, 0.25);
+    background: rgba(255, 160, 80, 0.1);
     transform: translateY(-2px);
 }
 
-/* Section */
-.section {
-    padding: 5rem 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-header h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
+/* 卡片區 */
+.section-title {
+    font-size: 2rem;
+    margin: 3rem 0 2rem;
+    position: relative;
     display: inline-block;
-    background: linear-gradient(120deg, #e2e8f0, #64ffda);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
 }
 
-.section-header .sub {
-    color: #64748b;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: #ffa050;
+    border-radius: 3px;
 }
 
-/* 卡片網格 */
-.cards-grid {
+.cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    margin-top: 1rem;
 }
 
 .card {
-    background: rgba(20, 25, 40, 0.7);
+    background: rgba(30, 30, 50, 0.7);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(100, 255, 218, 0.15);
     border-radius: 28px;
-    padding: 2rem 1.8rem;
-    transition: all 0.3s ease;
+    padding: 2rem;
+    border: 1px solid rgba(255, 160, 80, 0.2);
+    transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-8px);
-    border-color: rgba(100, 255, 218, 0.5);
-    background: rgba(30, 35, 55, 0.8);
-    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 160, 80, 0.6);
+    background: rgba(40, 40, 65, 0.8);
 }
 
 .card-icon {
@@ -203,13 +201,13 @@ nav a:hover {
 }
 
 .card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: #64ffda;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #ffa050;
 }
 
 .card p {
-    color: #b4c2e0;
+    color: #bbb;
     line-height: 1.5;
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
@@ -219,64 +217,74 @@ nav a:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1.2rem;
-    background: rgba(100, 255, 218, 0.1);
-    border-radius: 40px;
-    color: #64ffda;
+    color: #ffa050;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.85rem;
-    transition: 0.2s;
+    font-size: 0.9rem;
 }
 
 .card-link:hover {
-    background: #64ffda;
-    color: #0a0c15;
     gap: 0.8rem;
 }
 
 footer {
     text-align: center;
     padding: 2rem;
-    border-top: 1px solid rgba(100, 255, 218, 0.1);
-    color: #64748b;
-    font-size: 0.8rem;
+    color: #777;
+    font-size: 0.75rem;
+    border-top: 1px solid rgba(255, 160, 80, 0.1);
+    margin-top: 2rem;
 }
 
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    nav { gap: 1.5rem; font-size: 0.85rem; }
-    .section { padding: 3rem 1rem; }
-    .section-header h2 { font-size: 1.8rem; }
+    nav {
+        position: fixed;
+        bottom: 1rem;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        background: rgba(30, 30, 50, 0.9);
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+    }
+    .main {
+        padding: 2rem 1.5rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 }
 </style>
 </head>
 <body>
-<div class="bg-orb"></div>
+
+<div class="wave-bg">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#2a2a4a" fill-opacity="0.4" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,176C672,171,768,181,864,197.3C960,213,1056,235,1152,234.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+</div>
 
 <nav>
     <a href="#home">首頁</a>
     <a href="#explore">探索</a>
     <a href="about.html">關於</a>
+    <a href="resume.html">履歷</a>
 </nav>
 
-<section class="hero" id="home">
-    <div class="hero-content">
-        <h1>彭韋諾</h1>
-        <p>設備工程師 | 精密機械 · 故障排除 · 製程優化</p>
+<div class="main" id="home">
+    <div class="hero">
+        <div class="hero-badge">EQUIPMENT ENGINEER</div>
+        <h1>彭韋諾<br><span>精密機械 · 故障排除</span></h1>
+        <div class="hero-desc">從資訊管理跨足設備工程，以實作與分析能力，成為產線最信賴的技術專家。</div>
         <div class="btn-group">
             <a href="https://www.104.com.tw/job/90jbl?jobsource=index_s" target="_blank" class="btn btn-primary">🔧 104 應徵職缺</a>
             <a href="about.html" class="btn btn-outline">📄 認識我</a>
         </div>
     </div>
-</section>
 
-<section class="section" id="explore">
-    <div class="section-header">
-        <h2>職涯探索</h2>
-        <div class="sub">Career Exploration</div>
-    </div>
-    <div class="cards-grid">
+    <div class="section-title" id="explore">職涯探索</div>
+    <div class="cards">
         <div class="card">
             <div class="card-icon">📊</div>
             <h3>何倫碼分析</h3>
@@ -296,10 +304,10 @@ footer {
             <a href="resume.html" class="card-link">檢視履歷 →</a>
         </div>
     </div>
-</section>
 
-<footer>
-    <p>© 2026 彭韋諾｜設備工程師職涯網站</p>
-</footer>
+    <footer>
+        <p>© 2026 彭韋諾｜設備工程師職涯網站</p>
+    </footer>
+</div>
 </body>
 </html>
