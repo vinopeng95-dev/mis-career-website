@@ -2,8 +2,9 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>彭韋諾 · 關於我 | 設備工程師職涯</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彭韋諾 · 關於我</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,175 +13,127 @@
         }
 
         body {
-            background: linear-gradient(135deg, #eef2f8 0%, #dce3ec 100%);
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
-            color: #1e293b;
+            background: #0c0f17;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            color: #e8edf5;
             line-height: 1.5;
-            min-height: 100vh;
         }
 
-        /* 返回按鈕浮動 */
-        .back-btn-fixed {
+        /* 返回按鈕 */
+        .top-bar {
             position: fixed;
-            top: 25px;
-            right: 25px;
+            top: 1.5rem;
+            right: 1.5rem;
             z-index: 100;
-            background: #1e293b;
-            color: #f59e0b;
-            border: 1px solid #f59e0b;
-            padding: 10px 24px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
+        }
+        .back-btn {
+            background: rgba(30, 35, 55, 0.9);
             backdrop-filter: blur(8px);
-            transition: all 0.3s;
-            display: flex;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            color: #64ffda;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.25s;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            gap: 0.5rem;
+        }
+        .back-btn:hover {
+            background: #64ffda;
+            color: #0c0f17;
         }
 
-        .back-btn-fixed:hover {
-            background: #f59e0b;
-            color: #0f172a;
-            transform: translateY(-2px);
-        }
-
-        .dashboard {
+        /* 主內容 */
+        .container {
             max-width: 1300px;
-            margin: 2rem auto;
-            padding: 0 1.8rem;
+            margin: 0 auto;
+            padding: 4rem 2rem;
             display: grid;
             grid-template-columns: 320px 1fr;
-            gap: 2rem;
-            align-items: start;
+            gap: 2.5rem;
         }
 
-        /* 左側側邊欄 */
-        .sidebar {
-            background: #ffffff;
+        /* 左側卡片 */
+        .profile-card {
+            background: linear-gradient(145deg, #141a2a, #0e1220);
             border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(100, 255, 218, 0.15);
             position: sticky;
             top: 2rem;
         }
 
-        .profile-header {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            color: white;
-        }
-
-        .avatar-large {
-            width: 130px;
-            height: 130px;
+        .avatar {
+            width: 120px;
+            height: 120px;
             margin: 0 auto 1.2rem;
+            background: linear-gradient(135deg, #64ffda, #f59e0b);
             border-radius: 50%;
-            background: #334155;
-            border: 4px solid #f59e0b;
-            box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
             font-weight: 700;
-            color: white;
+            color: #0c0f17;
         }
 
-        .sidebar-name {
+        .name {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 700;
+            text-align: center;
             margin-bottom: 0.3rem;
         }
-
-        .sidebar-title {
-            font-size: 0.85rem;
-            background: rgba(245, 158, 11, 0.3);
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            font-weight: 500;
+        .eng-name {
+            text-align: center;
+            color: #64ffda;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
         }
 
-        .contact-compact {
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            font-size: 0.85rem;
+        }
+
+        .skill-section {
             margin-top: 1.5rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 1.2rem;
-            padding: 0.8rem;
-            font-size: 0.85rem;
-            text-align: left;
         }
-
-        .contact-compact div {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            margin-bottom: 0.6rem;
-            word-break: break-all;
+        .skill-title {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #64ffda;
         }
-
-        .interest-section {
-            padding: 1.8rem 1.5rem;
-        }
-
-        .side-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1e293b;
-            border-left: 4px solid #f59e0b;
-            padding-left: 0.8rem;
-        }
-
-        .skill-tags {
+        .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.8rem;
+            gap: 0.5rem;
         }
-
-        .skill-tag {
-            background: #eef2ff;
-            padding: 0.3rem 1rem;
+        .tag {
+            background: rgba(100, 255, 218, 0.1);
+            padding: 0.25rem 0.9rem;
             border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #1e293b;
+            font-size: 0.7rem;
         }
 
-        .hobby-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .hobby-item {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            font-size: 0.9rem;
-        }
-
-        /* 右側主內容 */
-        .main-content {
+        /* 右側內容 */
+        .content-area {
             display: flex;
             flex-direction: column;
             gap: 1.8rem;
         }
 
-        .card-modern {
-            background: #ffffff;
+        .card {
+            background: rgba(20, 26, 42, 0.6);
+            backdrop-filter: blur(4px);
             border-radius: 1.8rem;
-            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(100, 255, 218, 0.1);
             overflow: hidden;
-            border: 1px solid #e2e8f0;
         }
 
         .card-inner {
@@ -188,205 +141,130 @@
         }
 
         .card-title {
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            color: #0f172a;
+            gap: 0.5rem;
+            color: #64ffda;
         }
 
-        .bio-quote {
-            background: #f8fafc;
-            border-radius: 1.2rem;
-            padding: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.75;
-            color: #334155;
-            border-left: 5px solid #f59e0b;
+        .bio-text {
+            color: #cbd5e6;
+            line-height: 1.8;
+            font-size: 0.95rem;
         }
 
-        .skill-grid {
+        .grid-2col {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 1rem;
             margin-top: 0.5rem;
         }
 
-        .skill-card-mini {
-            background: #f8fafc;
+        .skill-chip {
+            background: rgba(100, 255, 218, 0.08);
+            padding: 0.8rem;
             border-radius: 1.2rem;
-            padding: 1rem;
             text-align: center;
-            border: 1px solid #e2e8f0;
             transition: 0.2s;
         }
-
-        .skill-card-mini:hover {
-            transform: translateY(-3px);
-            border-color: #f59e0b;
+        .skill-chip:hover {
+            background: rgba(100, 255, 218, 0.15);
         }
 
-        .skill-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .contact-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 0.8rem;
-        }
-
-        .btn-copy {
+        .copy-btn {
             background: transparent;
-            border: 1.5px solid #cbd5e1;
-            padding: 0.6rem 1.4rem;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #1e293b;
+            border: 1px solid #64ffda;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            color: #64ffda;
             cursor: pointer;
             transition: 0.2s;
         }
-
-        .btn-copy:hover {
-            background: #eef2ff;
-            border-color: #f59e0b;
+        .copy-btn:hover {
+            background: #64ffda;
+            color: #0c0f17;
         }
 
         @media (max-width: 900px) {
-            .dashboard { grid-template-columns: 1fr; gap: 1.5rem; }
-            .sidebar { position: static; max-width: 500px; margin: 0 auto; }
-            .back-btn-fixed { top: 15px; right: 15px; padding: 6px 16px; font-size: 0.8rem; }
-        }
-
-        @media (max-width: 550px) {
-            .card-inner { padding: 1.2rem; }
-            .card-title { font-size: 1.3rem; }
+            .container { grid-template-columns: 1fr; padding: 1.5rem; }
+            .profile-card { position: static; max-width: 450px; margin: 0 auto; }
+            .top-bar { top: 1rem; right: 1rem; }
         }
     </style>
 </head>
 <body>
 
-<a href="index.html" class="back-btn-fixed">🏠 返回首頁</a>
+<div class="top-bar">
+    <a href="index.html" class="back-btn">← 返回主頁</a>
+</div>
 
-<div class="dashboard">
-    <aside class="sidebar">
-        <div class="profile-header">
-            <div class="avatar-large">彭</div>
-            <div class="sidebar-name">彭韋諾</div>
-            <div class="sidebar-title">Peng Wei-Nuo · 資管系</div>
-            <div class="contact-compact">
-                <div>📞 0966-208-950</div>
-                <div>✉️ vinopeng95@gmail.com</div>
-                <div>📍 苗栗竹南鎮 · 台灣</div>
-            </div>
-        </div>
-        <div class="interest-section">
-            <div class="side-title">⚙️ 核心領域</div>
-            <div class="skill-tags">
-                <span class="skill-tag">🔧 設備維護</span>
-                <span class="skill-tag">🖥️ 自動化控制</span>
-                <span class="skill-tag">📊 數據分析</span>
-                <span class="skill-tag">🔌 PLC基礎</span>
-                <span class="skill-tag">⚙️ 精密機械</span>
-            </div>
-            <div class="side-title">❤️ 熱愛事物</div>
-            <div class="hobby-list">
-                <div class="hobby-item">🛠️ 設備故障排除</div>
-                <div class="hobby-item">📖 自動化技術研究</div>
-                <div class="hobby-item">🔩 機械結構探索</div>
-                <div class="hobby-item">📈 製程效率改善</div>
+<div class="container">
+    <aside class="profile-card">
+        <div class="avatar">彭</div>
+        <div class="name">彭韋諾</div>
+        <div class="eng-name">Peng Wei-Nuo</div>
+        <div class="contact-item">📞 0966-208-950</div>
+        <div class="contact-item">✉️ vinopeng95@gmail.com</div>
+        <div class="contact-item">📍 苗栗竹南鎮 · 台灣</div>
+        <div class="skill-section">
+            <div class="skill-title">核心領域</div>
+            <div class="tags">
+                <span class="tag">設備維護</span>
+                <span class="tag">自動化控制</span>
+                <span class="tag">故障排除</span>
+                <span class="tag">PLC基礎</span>
             </div>
         </div>
     </aside>
 
-    <div class="main-content">
-        <div class="card-modern">
+    <div class="content-area">
+        <div class="card">
             <div class="card-inner">
-                <div class="card-title">
-                    <span>✨ 關於我 · 從資訊到設備的熱情</span>
-                </div>
-                <div class="bio-quote">
-                    我是彭韋諾，目前就讀資訊管理系。雖然主修資訊，但我對硬體設備、自動化控制與精密機械充滿無限熱情。<br><br>
-                    我喜歡動手拆解問題、分析故障根源，並找出最佳解決方案。在校期間，我不僅學習程式設計與資料庫，更自主鑽研PLC基礎、機械原理與設備維護知識。<br><br>
-                    我的何倫碼為 <strong style="color:#f59e0b;">RIC (實用型＋研究型＋常規型)</strong>，這代表我具備「務實動手、邏輯分析、標準化作業」的特質 — 與設備工程師職務高度契合。<br><br>
-                    「讓每一台設備發揮極致效能，成為產線最信賴的後盾」 — 這是我對未來的期許。期望能在半導體或高科技製造業中，從設備工程師起步，持續精進，為企業貢獻價值。
+                <div class="card-title">✨ 關於我</div>
+                <div class="bio-text">
+                    我是彭韋諾，資訊管理系在學生，但對硬體設備與自動化控制有著極大的熱情。我喜歡動手拆解問題、分析故障根源，並找出最佳解決方案。<br><br>
+                    我的何倫碼為 <strong style="color:#64ffda;">RIC (實用型＋研究型＋常規型)</strong>，這代表我具備「務實動手、邏輯分析、標準化作業」的特質 — 與設備工程師職務高度契合。<br><br>
+                    「讓每一台設備發揮極致效能」— 期望在半導體或高科技製造業中，從設備工程師起步，持續精進，成為產線最信賴的後盾。
                 </div>
             </div>
         </div>
 
-        <div class="card-modern">
+        <div class="card">
             <div class="card-inner">
-                <div class="card-title">
-                    <span>🔩 專業亮點 · 技術熱忱</span>
-                </div>
-                <div class="skill-grid">
-                    <div class="skill-card-mini">
-                        <div class="skill-icon">🔧</div>
-                        <div style="font-weight: 700;">故障診斷</div>
-                        <div style="font-size: 0.75rem;">系統化分析、根本原因查找</div>
-                    </div>
-                    <div class="skill-card-mini">
-                        <div class="skill-icon">⚙️</div>
-                        <div style="font-weight: 700;">設備保養</div>
-                        <div style="font-size: 0.75rem;">預防保養規劃、OEE提升</div>
-                    </div>
-                    <div class="skill-card-mini">
-                        <div class="skill-icon">📊</div>
-                        <div style="font-weight: 700;">數據分析</div>
-                        <div style="font-size: 0.75rem;">Excel / Python 數據解讀</div>
-                    </div>
-                    <div class="skill-card-mini">
-                        <div class="skill-icon">🔌</div>
-                        <div style="font-weight: 700;">PLC基礎</div>
-                        <div style="font-size: 0.75rem;">自動化控制邏輯</div>
-                    </div>
+                <div class="card-title">🔩 專業亮點</div>
+                <div class="grid-2col">
+                    <div class="skill-chip">🔧 故障診斷與分析</div>
+                    <div class="skill-chip">⚙️ 預防保養規劃</div>
+                    <div class="skill-chip">📊 數據分析 (Excel/Python)</div>
+                    <div class="skill-chip">🔌 PLC 基礎邏輯</div>
                 </div>
             </div>
         </div>
 
-        <div class="card-modern">
+        <div class="card">
             <div class="card-inner">
-                <div class="card-title">
-                    <span>📬 交流與合作</span>
+                <div class="card-title">📬 聯繫交流</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>📧 vinopeng95@gmail.com</div>
+                    <button class="copy-btn" id="copyEmail">複製 Email</button>
                 </div>
-                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
-                    <div>
-                        <p style="margin-bottom: 0.6rem;">📧 電子郵件：<strong>vinopeng95@gmail.com</strong></p>
-                        <p>📞 聯絡電話：<strong>0966-208-950</strong> (歡迎技術交流)</p>
-                    </div>
-                    <div class="contact-buttons">
-                        <button class="btn-copy" id="copyEmailBtn">📋 複製 Email</button>
-                    </div>
-                </div>
-                <div style="margin-top: 1rem; font-size: 0.75rem; color: #64748b; background: #f1f5f9; padding: 0.5rem 1rem; border-radius: 60px; display: inline-block;">
-                    ✨ 設備維護 / 自動化技術交流皆可來信 — 期待與你激盪火花
-                </div>
+                <div style="margin-top: 1rem; font-size: 0.75rem; color: #7c8aa0;">✨ 設備維護 / 自動化技術交流皆可來信</div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    const copyBtn = document.getElementById('copyEmailBtn');
-    if (copyBtn) {
-        copyBtn.addEventListener('click', function() {
-            const email = "vinopeng95@gmail.com";
-            navigator.clipboard.writeText(email).then(() => {
-                const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = "✅ 已複製！";
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalText;
-                }, 2000);
-            }).catch(() => {
-                alert("手動複製 email：" + email);
-            });
-        });
-    }
+    document.getElementById('copyEmail')?.addEventListener('click', () => {
+        navigator.clipboard.writeText('vinopeng95@gmail.com');
+        const btn = document.getElementById('copyEmail');
+        const original = btn.innerText;
+        btn.innerText = '✅ 已複製';
+        setTimeout(() => btn.innerText = original, 2000);
+    });
 </script>
 </body>
 </html>
