@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>彭韋諾 · 設備工程師履歷</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>彭韋諾 · 履歷</title>
+
 <style>
 * {
     margin: 0;
@@ -13,128 +13,163 @@
 }
 
 body {
-    background: #0e121f;
-    font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
-    color: #eef2ff;
+    background: #0b0f1a;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #e2e8f0;
 }
 
-/* 導航 */
-.navbar {
+/* NAV */
+.nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2.5rem;
-    background: rgba(14, 18, 31, 0.95);
+    padding: 1.2rem 2rem;
+    background: rgba(15,20,35,0.8);
     backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(90, 150, 200, 0.3);
-    flex-wrap: wrap;
-}
-.logo {
-    font-size: 1.3rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #e0e8ff, #5a96c8);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-.nav-items {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-.nav-items a {
-    color: #b8c5e0;
-    text-decoration: none;
-    transition: 0.2s;
-}
-.nav-items a:hover {
-    color: #5a96c8;
-}
-.back-home {
-    background: rgba(90, 150, 200, 0.15);
-    border: 1px solid #5a96c8;
-    padding: 0.4rem 1.2rem;
-    border-radius: 50px;
-    color: #5a96c8;
-}
-.back-home:hover {
-    background: #5a96c8;
-    color: #0e121f;
+    border-bottom: 1px solid rgba(100,150,255,0.2);
 }
 
-/* Hero */
+.nav a {
+    color: #94a3b8;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #60a5fa;
+}
+
+/* HERO */
 .hero {
     text-align: center;
     padding: 3rem 2rem;
-    background: radial-gradient(ellipse at 50% 0%, rgba(90,150,200,0.12), transparent);
 }
+
 .hero h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #ffffff, #5a96c8);
-    background-clip: text;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg,#60a5fa,#22c55e);
     -webkit-background-clip: text;
     color: transparent;
 }
+
 .hero p {
-    color: #94a3c0;
-    margin-top: 0.3rem;
+    color: #94a3b8;
 }
 
-/* 區塊 */
+/* SECTION */
 .section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    border-bottom: 1px solid rgba(90, 150, 200, 0.15);
+    max-width: 1000px;
+    margin: auto;
+    padding: 2.5rem 1.5rem;
 }
+
 .section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: #5a96c8;
+    color: #60a5fa;
+    margin-bottom: 1rem;
 }
 
-/* 卡片群 */
-.grid-cards {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-.grid-card {
-    flex: 1;
-    min-width: 230px;
-    background: rgba(25, 30, 48, 0.7);
-    border-radius: 1.5rem;
+/* 卡片 */
+.card {
+    background: rgba(20,25,45,0.6);
+    border: 1px solid rgba(100,150,255,0.15);
+    border-radius: 20px;
     padding: 1.5rem;
-    border: 1px solid rgba(90, 150, 200, 0.2);
-    transition: 0.25s;
-}
-.grid-card:hover {
-    border-color: rgba(90, 150, 200, 0.6);
-    transform: translateY(-4px);
-}
-.grid-card h3 {
-    color: #5a96c8;
-    margin-bottom: 0.8rem;
-}
-.grid-card p, .grid-card li {
-    color: #c0cae0;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-.grid-card ul {
-    padding-left: 1.2rem;
-    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    transition: 0.3s;
 }
 
-/* 工作區塊 */
-.job-box {
-    background: rgba(25, 30, 48, 0.6);
-    border-radius: 1.5rem;
-    padding: 1.8rem;
+.card:hover {
+    border-color: #60a5fa;
+    transform: translateY(-3px);
+}
+
+/* 技能 */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill {
+    background: rgba(96,165,250,0.15);
+    color: #60a5fa;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+}
+
+/* 經歷 */
+.job-title {
+    font-weight: bold;
+}
+
+.job-time {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+    <div>Resume</div>
+    <a href="index.html">← 返回主頁</a>
+</div>
+
+<div class="hero">
+    <h1>設備工程師履歷</h1>
+    <p>機械 × 製程 × 自動化</p>
+</div>
+
+<div class="section">
+
+    <h2>📌 個人摘要</h2>
+    <div class="card">
+        專注於設備維護與製程優化，具備故障排除與數據分析能力，
+        致力於提升設備穩定度與產線效率。
+    </div>
+
+    <h2>🛠 技能專長</h2>
+    <div class="card">
+        <div class="skills">
+            <span class="skill">設備維護</span>
+            <span class="skill">故障排除</span>
+            <span class="skill">自動化控制</span>
+            <span class="skill">PLC</span>
+            <span class="skill">Excel</span>
+            <span class="skill">Python</span>
+        </div>
+    </div>
+
+    <h2>💼 經歷</h2>
+    <div class="card">
+        <div class="job-title">設備學習與專題實作</div>
+        <div class="job-time">2024 - 現在</div>
+        <ul>
+            <li>學習設備維護與基本機械原理</li>
+            <li>進行故障分析與排除練習</li>
+            <li>使用數據分析提升效率</li>
+        </ul>
+    </div>
+
+    <h2>🎯 未來目標</h2>
+    <div class="card">
+        進入半導體或高科技產業，成為專業設備工程師，
+        持續精進技術並提升產線效率。
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 彭韋諾
+</div>
+
+</body>
+</html>
